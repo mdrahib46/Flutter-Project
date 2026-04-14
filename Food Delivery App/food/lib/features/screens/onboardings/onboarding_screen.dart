@@ -32,9 +32,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void dispose() {
     Provider.of<OnboardingProvider>(context, listen: false).stopAutoSlide();
-
-    Provider.of<OnboardingProvider>(context, listen: false).stopAutoSlide();
-
     controller.dispose();
     super.dispose();
   }
