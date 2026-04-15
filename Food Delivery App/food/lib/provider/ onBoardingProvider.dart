@@ -17,7 +17,7 @@ class OnboardingProvider extends ChangeNotifier {
   void startAutoSlide(PageController controller) {
     _timer?.cancel();
 
-    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (_currentIndex < totalPage - 1) {
         _currentIndex++;
       } else {
@@ -43,7 +43,7 @@ class OnboardingProvider extends ChangeNotifier {
     if (_currentIndex < totalPage - 1) {
       _currentIndex++;
       controller.nextPage(
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
       notifyListeners();

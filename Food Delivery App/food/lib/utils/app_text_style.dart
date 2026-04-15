@@ -24,8 +24,7 @@ class AppTextStyles {
   );
 
   static const TextStyle bodyText = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
+    fontSize: 16,
   );
 
   static const TextStyle helperText = TextStyle(

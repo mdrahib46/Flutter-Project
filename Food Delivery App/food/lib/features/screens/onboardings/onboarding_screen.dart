@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/features/screens/auth_screen/login_screen.dart';
 import 'package:food/features/screens/onboardings/widgets/onboarding_screen_widget.dart';
 import 'package:food/provider/%20onBoardingProvider.dart';
 import 'package:food/utils/app_colors.dart';
@@ -16,22 +17,21 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController controller = PageController();
+  late OnboardingProvider onboardingProvider;
 
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<OnboardingProvider>(
-        context,
-        listen: false,
-      ).startAutoSlide(controller);
+      onboardingProvider = Provider.of<OnboardingProvider>(context, listen: false);
+      onboardingProvider.startAutoSlide(controller);
     });
   }
 
   @override
   void dispose() {
-    Provider.of<OnboardingProvider>(context, listen: false).stopAutoSlide();
+    onboardingProvider.stopAutoSlide();
     controller.dispose();
     super.dispose();
   }
@@ -115,7 +115,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 left: 0,
                 child: ElevatedButton(
                   onPressed: () {
-                    provider.nextPage(controller);
+                    if (provider.currentIndex == 2) {
+                      onTapLogin();
+                    } else {
+                      provider.nextPage(controller);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.buttonBackground,
@@ -134,5 +138,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
     );
+  }
+
+  void onTapLogin(){
+    Navigator.pushNamedAndRemoveUntil(context, LoginScreen.name, (route)=> false);
   }
 }

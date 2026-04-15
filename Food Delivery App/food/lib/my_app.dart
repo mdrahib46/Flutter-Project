@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food/features/screens/auth_screen/login_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
+import 'package:food/utils/app_colors.dart';
 import 'features/screens/onboardings/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,6 +14,38 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
 
+      theme: ThemeData(
+
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          filled: true,
+          fillColor: AppColors.textFieldColor,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.transparent)
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.transparent)
+          ),
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.buttonBackground,
+            foregroundColor: AppColors.buttonForeground,
+            minimumSize: Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.circular(8),
+            ),
+          )
+        )
+
+
+      ),
+
       initialRoute: SplashScreen.name,
 
       onGenerateRoute: (RouteSettings settings) {
@@ -21,10 +55,10 @@ class MyApp extends StatelessWidget {
           widget = const SplashScreen();
         } else if (settings.name == OnboardingScreen.name) {
           widget = const OnboardingScreen();
+        } else if (settings.name == LoginScreen.name) {
+          widget = const LoginScreen();
         } else {
-          widget = const Scaffold(
-            body: Center(child: Text("No route found")),
-          );
+          widget = const Scaffold(body: Center(child: Text("No route found")));
         }
 
         return MaterialPageRoute(builder: (context) => widget);

@@ -11,4 +11,8 @@ class AppStrings {
       "Get all loved foods in one once place, you just place the order we do the rest";
   static const String onBoardingSubTitle3 =
       "Get all loved foods in one once place, you just place the order we do the rest";
+
+
+  static const String loginTitle = "Log In";
+  static const String loginSubTitle = "Please sign in to your existing account";
 }
