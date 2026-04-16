@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
-      backgroundColor: Color(0xff121223),
+      backgroundColor: AppColors.authScaffoldBgColor,
       body: AuthBackground(
         child: Column(
           children: [
