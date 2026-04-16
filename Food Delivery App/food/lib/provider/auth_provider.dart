@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class AuthProvider extends ChangeNotifier {
   bool _isChecked = false;
   bool _isPassVisible = false;
+  bool _isConfirmPassVisible = false;
 
   bool _isLoading = false;
+
+
+
+  bool get isConfirmPassVisible => _isConfirmPassVisible;
 
   bool get isChecked => _isChecked;
   bool get isPassVisible => _isPassVisible;
@@ -12,6 +17,12 @@ class AuthProvider extends ChangeNotifier {
 
   void toggleRemember(bool value) {
     _isChecked = value;
+    notifyListeners();
+  }
+
+
+  void toggleConfirmPasswordVisibility() {
+    _isConfirmPassVisible = !_isConfirmPassVisible;
     notifyListeners();
   }
 

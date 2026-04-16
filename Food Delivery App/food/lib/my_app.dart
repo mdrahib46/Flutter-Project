@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food/features/screens/auth_screen/login_screen.dart';
+import 'package:food/features/screens/auth_screen/sign_up_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
 import 'package:food/utils/app_colors.dart';
 import 'features/screens/onboardings/splash_screen.dart';
@@ -57,7 +58,10 @@ class MyApp extends StatelessWidget {
           widget = const OnboardingScreen();
         } else if (settings.name == LoginScreen.name) {
           widget = const LoginScreen();
-        } else {
+        }
+        else if (settings.name == SignUpScreen.name) {
+          widget = const SignUpScreen();
+        }else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }
 

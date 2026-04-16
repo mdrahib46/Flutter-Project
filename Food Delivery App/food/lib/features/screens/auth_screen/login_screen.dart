@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food/features/screens/auth_screen/sign_up_screen.dart';
 import 'package:food/features/screens/auth_screen/widgets/auth_screen_background.dart';
 import 'package:food/features/screens/auth_screen/widgets/social_media_icon_button.dart';
 import 'package:food/provider/auth_provider.dart';
@@ -177,6 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
   void _onTapSignUp(){
+    Navigator.pushNamed(context, SignUpScreen.name);
 
   }
 }

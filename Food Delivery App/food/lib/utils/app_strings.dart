@@ -15,4 +15,7 @@ class AppStrings {
 
   static const String loginTitle = "Log In";
   static const String loginSubTitle = "Please sign in to your existing account";
+
+  static const String signUpTitle = "Sign Up";
+  static const String signUpSubTitle = "Please sign up to get started";
 }
