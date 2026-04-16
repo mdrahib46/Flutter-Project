@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food/my_app.dart';
+import 'package:food/provider/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/ onBoardingProvider.dart';
@@ -9,6 +10,7 @@ import 'provider/ onBoardingProvider.dart';
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_)=> OnboardingProvider()),
+    ChangeNotifierProvider(create: (_)=> AuthProvider()),
   ],
   child: const MyApp()));
 }

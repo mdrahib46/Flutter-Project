@@ -21,8 +21,8 @@ class AuthBackground extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        Positioned(
-            top: 128,
+        Positioned.fill(
+            top: 142,
             left: 0,
             right: 0,
             child: child)

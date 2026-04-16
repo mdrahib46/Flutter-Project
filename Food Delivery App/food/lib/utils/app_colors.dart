@@ -22,6 +22,15 @@ class AppColors {
   static const Color textFieldColor = Color(0xFFF0F5FA);
 
 
+  // Social Media Icon Button Color
+
+  static const Color appleIconBg = Color(0XFF1B1F2F);
+  static const Color fbIconBg = Color(0xFF169CE8);
+  static const Color xIconBg = Color(0xFF395998);
+
+
+
+
 
 
 }
