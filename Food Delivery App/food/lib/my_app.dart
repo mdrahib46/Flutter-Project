@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food/features/screens/auth_screen/forgot_pass_screen.dart';
 import 'package:food/features/screens/auth_screen/login_screen.dart';
+import 'package:food/features/screens/auth_screen/otp_verify_screen.dart';
 import 'package:food/features/screens/auth_screen/sign_up_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
 import 'package:food/utils/app_colors.dart';
@@ -16,20 +18,17 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
 
       theme: ThemeData(
-
         inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           filled: true,
           fillColor: AppColors.textFieldColor,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.transparent)
+            borderSide: BorderSide(color: Colors.transparent),
           ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.transparent)
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.transparent),
           ),
         ),
 
@@ -41,13 +40,11 @@ class MyApp extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusGeometry.circular(8),
             ),
-          )
-        )
-
-
+          ),
+        ),
       ),
 
-      initialRoute: LoginScreen.name,
+      initialRoute: SplashScreen.name,
 
       onGenerateRoute: (RouteSettings settings) {
         Widget widget;
@@ -58,10 +55,13 @@ class MyApp extends StatelessWidget {
           widget = const OnboardingScreen();
         } else if (settings.name == LoginScreen.name) {
           widget = const LoginScreen();
-        }
-        else if (settings.name == SignUpScreen.name) {
+        } else if (settings.name == SignUpScreen.name) {
           widget = const SignUpScreen();
-        }else {
+        } else if (settings.name == ForgotPassScreen.name) {
+          widget = const ForgotPassScreen();
+        }else if (settings.name == OtpVerifyScreen.name) {
+          widget = const OtpVerifyScreen();
+        }  else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }
 

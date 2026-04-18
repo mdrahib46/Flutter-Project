@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacementNamed(
         context,
         OnboardingScreen.name,
@@ -26,8 +26,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Image(image: AssetImage(AppImages.logo), height: 70,)),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Image(
+              image: AssetImage(AppImages.splashScreenBg),
+              fit: BoxFit.cover,
+            ),
+          ),
+          Center(child: Image(image: AssetImage(AppImages.logo), height: 70,))
+
+        ],
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/features/screens/auth_screen/widgets/auth_body_container.dart';
 import 'package:food/features/screens/auth_screen/widgets/auth_screen_background.dart';
 import 'package:food/provider/auth_provider.dart';
 import 'package:food/utils/app_colors.dart';
@@ -34,71 +35,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             const SizedBox(height: 40),
 
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
+            AuthBodyContainer(child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                Text('NAME'),
+                TextFormField(
+                  decoration: InputDecoration(hintText: 'John Doe'),
+                ),
+                const SizedBox(height: 20),
+                Text('EMAIL'),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'example@mail.com',
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 20),
-                      Text('NAME'),
-                      TextFormField(
-                        decoration: InputDecoration(hintText: 'John Doe'),
+                const SizedBox(height: 20),
+                Text('PASSWORD'),
+                TextFormField(
+                  obscureText: !authProvider.isPassVisible,
+                  decoration: InputDecoration(
+                    hintText: '• • • • • • • •',
+                    suffixIcon: IconButton(
+                      onPressed: authProvider.togglePasswordVisibility,
+                      icon: Icon(
+                        authProvider.isPassVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                       ),
-                      const SizedBox(height: 20),
-                      Text('EMAIL'),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'example@mail.com',
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text('PASSWORD'),
-                      TextFormField(
-                        obscureText: !authProvider.isPassVisible,
-                        decoration: InputDecoration(
-                          hintText: '• • • • • • • •',
-                          suffixIcon: IconButton(
-                            onPressed: authProvider.togglePasswordVisibility,
-                            icon: Icon(
-                              authProvider.isPassVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text('RE-TYPE PASSWORD'),
-                      TextFormField(
-                        obscureText: !authProvider.isConfirmPassVisible,
-                        decoration: InputDecoration(
-                          hintText: '• • • • • • • •',
-                          suffixIcon: IconButton(
-                            onPressed: authProvider.toggleConfirmPasswordVisibility,
-                            icon: Icon(
-                              authProvider.isConfirmPassVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 40),
-                      ElevatedButton(onPressed: () {}, child: Text('SIGN UP')),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
+                const SizedBox(height: 20),
+                Text('RE-TYPE PASSWORD'),
+                TextFormField(
+                  obscureText: !authProvider.isConfirmPassVisible,
+                  decoration: InputDecoration(
+                    hintText: '• • • • • • • •',
+                    suffixIcon: IconButton(
+                      onPressed: authProvider.toggleConfirmPasswordVisibility,
+                      icon: Icon(
+                        authProvider.isConfirmPassVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                ElevatedButton(onPressed: () {}, child: Text('SIGN UP')),
+              ],
+            ) ),
           ],
         ),
       ),

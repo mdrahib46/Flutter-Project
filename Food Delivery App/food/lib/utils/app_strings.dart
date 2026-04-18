@@ -12,10 +12,16 @@ class AppStrings {
   static const String onBoardingSubTitle3 =
       "Get all loved foods in one once place, you just place the order we do the rest";
 
-
   static const String loginTitle = "Log In";
   static const String loginSubTitle = "Please sign in to your existing account";
 
   static const String signUpTitle = "Sign Up";
   static const String signUpSubTitle = "Please sign up to get started";
+
+  static const String forgotPassTitle = "Forgot Password";
+  static const String forgotPassSubTitle = "Please sign up to get started";
+
+  static const String otpVerifyTitle = "Verification";
+  static const String otpVerifySubTitle = "We have sent a code to your email";
+
 }
