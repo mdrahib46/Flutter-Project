@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      initialRoute: SplashScreen.name,
+      initialRoute: LoginScreen.name,
 
       onGenerateRoute: (RouteSettings settings) {
         Widget widget;
