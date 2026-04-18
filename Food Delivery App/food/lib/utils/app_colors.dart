@@ -14,6 +14,8 @@ class AppColors {
 
   static const Color buttonBackground = Color(0xFFFF7622);
   static const Color buttonForeground = Colors.white;
+  static const Color leadingIcnBtnClr = Color(0xFFECF0F4);
+  static const Color actionBtnBg = Color(0xFF181C2E);
 
   static const Color textPrimaryColor = Color(0xFF646982);
 
@@ -32,6 +34,7 @@ class AppColors {
 
 
   static const Color pinCodeBoxColor = Color(0xFFF0F5FA);
+
 
 
 

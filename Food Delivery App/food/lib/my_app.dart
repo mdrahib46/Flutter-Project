@@ -4,8 +4,10 @@ import 'package:food/features/screens/auth_screen/forgot_pass_screen.dart';
 import 'package:food/features/screens/auth_screen/login_screen.dart';
 import 'package:food/features/screens/auth_screen/otp_verify_screen.dart';
 import 'package:food/features/screens/auth_screen/sign_up_screen.dart';
+import 'package:food/features/screens/home_screen/home_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
 import 'package:food/utils/app_colors.dart';
+import 'features/screens/home_screen/asdf.dart';
 import 'features/screens/onboardings/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -60,12 +62,16 @@ class MyApp extends StatelessWidget {
           widget = const SignUpScreen();
         } else if (settings.name == ForgotPassScreen.name) {
           widget = const ForgotPassScreen();
-        }else if (settings.name == OtpVerifyScreen.name) {
+        } else if (settings.name == OtpVerifyScreen.name) {
           widget = const OtpVerifyScreen();
-        }
-        else if (settings.name == ResetPasswordScreen.name) {
+        } else if (settings.name == ResetPasswordScreen.name) {
           widget = const ResetPasswordScreen();
-        }else {
+        } else if (settings.name == HomeScreen.name) {
+          widget = const HomeScreen();
+        }
+        else if (settings.name == Aasdfa.name) {
+          widget = const Aasdfa();
+        } else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }
 
