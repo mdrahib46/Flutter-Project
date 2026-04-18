@@ -24,4 +24,7 @@ class AppStrings {
   static const String otpVerifyTitle = "Verification";
   static const String otpVerifySubTitle = "We have sent a code to your email";
 
+  static const String changePassTitle = "Change Password";
+  static const String changePassSubTitle = "Enter a new password to secure your account";
+
 }

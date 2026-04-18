@@ -1,7 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:food/features/screens/auth_screen/reset_password_screen.dart';
 import 'package:food/features/screens/auth_screen/widgets/auth_body_container.dart';
 import 'package:food/features/screens/auth_screen/widgets/auth_screen_background.dart';
 import 'package:food/provider/auth_provider.dart';
@@ -97,9 +95,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () {
-                          print(pinCodeController.text);
-                        },
+                        onPressed: _moveToResetPassScreen,
                         child: Text('VERIFY'),
                       ),
                     ],
@@ -113,7 +109,8 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
     );
   }
 
-  void _moveToOtpVerifyScreen() {
-    Navigator.pushNamed(context, OtpVerifyScreen.name);
+
+  void _moveToResetPassScreen(){
+    Navigator.pushNamed(context, ResetPasswordScreen.name);
   }
 }

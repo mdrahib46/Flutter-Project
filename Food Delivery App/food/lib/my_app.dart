@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/features/screens/auth_screen/reset_password_screen.dart';
 import 'package:food/features/screens/auth_screen/forgot_pass_screen.dart';
 import 'package:food/features/screens/auth_screen/login_screen.dart';
 import 'package:food/features/screens/auth_screen/otp_verify_screen.dart';
@@ -61,7 +62,10 @@ class MyApp extends StatelessWidget {
           widget = const ForgotPassScreen();
         }else if (settings.name == OtpVerifyScreen.name) {
           widget = const OtpVerifyScreen();
-        }  else {
+        }
+        else if (settings.name == ResetPasswordScreen.name) {
+          widget = const ResetPasswordScreen();
+        }else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }
 
