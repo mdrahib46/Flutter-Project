@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food/features/common/widgets/custom_app_bard.dart';
 
-import 'asdf.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,9 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          ElevatedButton(onPressed: (){
-            Navigator.pushNamed(context, Aasdfa.name);
-          }, child: Text('child'))
+
         ],
       ),
     );

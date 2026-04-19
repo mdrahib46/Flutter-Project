@@ -7,7 +7,6 @@ import 'package:food/features/screens/auth_screen/sign_up_screen.dart';
 import 'package:food/features/screens/home_screen/home_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
 import 'package:food/utils/app_colors.dart';
-import 'features/screens/home_screen/asdf.dart';
 import 'features/screens/onboardings/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -68,9 +67,6 @@ class MyApp extends StatelessWidget {
           widget = const ResetPasswordScreen();
         } else if (settings.name == HomeScreen.name) {
           widget = const HomeScreen();
-        }
-        else if (settings.name == Aasdfa.name) {
-          widget = const Aasdfa();
         } else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }
