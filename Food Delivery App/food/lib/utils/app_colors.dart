@@ -18,6 +18,7 @@ class AppColors {
   static const Color actionBtnBg = Color(0xFF181C2E);
 
   static const Color textPrimaryColor = Color(0xFF646982);
+  static const Color hintTextColor = Color(0xFFA0A5BA);
 
 
 
@@ -25,6 +26,7 @@ class AppColors {
 
 
   static const Color textFieldColor = Color(0xFFF0F5FA);
+  static const Color textFieldIconColor = Color(0xFFA0A5BA);
 
 
   // Social Media Icon Button Color

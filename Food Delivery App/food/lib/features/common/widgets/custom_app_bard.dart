@@ -106,7 +106,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.actionBtnBg,
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(8),
                     child: Icon(
                       Icons.shopping_bag_outlined,
                       color: Colors.white,
