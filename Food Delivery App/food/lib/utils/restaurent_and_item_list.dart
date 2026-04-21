@@ -80,7 +80,7 @@ class RestaurantAndItemList {
     ),
     CategoryModel(
       title: "Coffee",
-      imageUrl: "https://png.pngtree.com/png-clipart/20240810/original/pngtree-flying-cup-of-coffee-with-splash-and-png-image_15739217.png",
+      imageUrl: "https://i.pinimg.com/474x/db/d5/b3/dbd5b393a8d8a4285ba0d3e9fdd15998.jpg",
     ),
     CategoryModel(
       title: "Ice Cream",
