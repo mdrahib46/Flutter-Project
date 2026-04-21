@@ -17,6 +17,7 @@ class AppColors {
   static const Color leadingIcnBtnClr = Color(0xFFECF0F4);
   static const Color actionBtnBg = Color(0xFF181C2E);
 
+  static const Color textSecondaryColor = Color(0xFF646982);
   static const Color textPrimaryColor = Color(0xFF646982);
   static const Color hintTextColor = Color(0xFFA0A5BA);
 

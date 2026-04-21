@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Text(
                             'Remember me',
                             style: TextStyle(
-                              color: AppColors.textPrimaryColor,
+                              color: AppColors.textSecondaryColor,
                               fontSize: 16,
                             ),
                           ),
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: RichText(
                       text: TextSpan(
                         text: "Don't have an account? ",
-                        style: TextStyle(color: AppColors.textPrimaryColor),
+                        style: TextStyle(color: AppColors.textSecondaryColor),
                         children: [
                           TextSpan(
                             text: " SING UP ",

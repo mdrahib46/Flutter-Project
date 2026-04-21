@@ -27,4 +27,7 @@ class AppStrings {
   static const String changePassTitle = "Change Password";
   static const String changePassSubTitle = "Enter a new password to secure your account";
 
+
+
 }
+
