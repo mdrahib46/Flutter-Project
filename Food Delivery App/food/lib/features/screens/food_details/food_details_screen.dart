@@ -11,7 +11,7 @@ class FoodDetailsScreen extends StatefulWidget {
 class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('Food Details Scren'),),);
+    return Scaffold(appBar: AppBar(title: Text('Food Details Screen'),),);
   }
 }
     
