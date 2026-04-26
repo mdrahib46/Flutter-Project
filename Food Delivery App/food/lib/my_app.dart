@@ -6,6 +6,7 @@ import 'package:food/features/screens/auth_screen/otp_verify_screen.dart';
 import 'package:food/features/screens/auth_screen/sign_up_screen.dart';
 import 'package:food/features/screens/home_screen/home_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
+import 'package:food/features/screens/restaurent_view/restaurant_view.dart';
 import 'package:food/utils/app_colors.dart';
 import 'features/screens/onboardings/splash_screen.dart';
 
@@ -67,6 +68,8 @@ class MyApp extends StatelessWidget {
           widget = const ResetPasswordScreen();
         } else if (settings.name == HomeScreen.name) {
           widget = const HomeScreen();
+        } else if (settings.name == RestaurantViewScreen.name) {
+          widget = const RestaurantViewScreen();
         } else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }

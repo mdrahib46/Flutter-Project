@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food/features/common/widgets/app_action__btn.dart';
 import 'package:food/features/common/widgets/custom_app_bard.dart';
-import 'package:food/features/screens/home_screen/widgets/category_segment_title_widget.dart';
+import 'package:food/features/common/widgets/segment_title_widget.dart';
 import 'package:food/features/screens/home_screen/widgets/food_category_item_card.dart';
 import 'package:food/features/screens/home_screen/widgets/restaurantCard.dart';
+import 'package:food/features/screens/restaurent_view/restaurant_view.dart';
 import 'package:food/utils/app_colors.dart';
 import 'package:food/utils/restaurent_and_item_list.dart';
 
@@ -15,18 +17,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'DELIVER TO',
-        subTitle: 'Location Name',
-        showBackButton: false,
-        cartCount: 2,
-        onLocationTap: () {},
+        leadIconBtn: Icon(Icons.menu),
+        titleWidget: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'DELIVER TO',
+              style: TextStyle(fontSize: 12, color: AppColors.primaryColor),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Halal lab office', style: TextStyle(fontSize: 12)),
+                InkWell(
+                  onTap: () {},
+                  child: Icon(Icons.arrow_drop_down_outlined),
+                ),
+              ],
+            ),
+          ],
+        ),
+        actionBtn: [
+          AppActionButton(isFoodCart: true, onTap: (){},)
+        ],
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -62,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              CategorySegmentTitleWidget(title: 'All Categories', onTap: () {}),
+              SegmentTitleWidget(title: 'All Categories', onTap: () {}),
 
               SizedBox(
                 height: 120,
@@ -70,7 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    final itemCategory = RestaurantAndItemList.categoryList[index];
+                    final itemCategory =
+                        RestaurantAndItemList.categoryList[index];
                     return Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: FoodCategoryItemCard(
@@ -84,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               const SizedBox(height: 10),
-              CategorySegmentTitleWidget(
+              SegmentTitleWidget(
                 title: 'Open Restaurants',
                 onTap: () {},
               ),
@@ -94,17 +113,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  final restaurant = RestaurantAndItemList.restaurantList[index];
+                  final restaurant =
+                      RestaurantAndItemList.restaurantList[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: RestaurantCard(
                       restaurantTitle: restaurant.title,
-                      itemList: restaurant.itemList, imageUrl: restaurant.imageUrl,
+                      itemList: restaurant.itemList,
+                      imageUrl: restaurant.imageUrl, onTap: () {
+                        Navigator.pushNamed(context, RestaurantViewScreen.name);
+                    },
                     ),
                   );
                 },
               ),
-
             ],
           ),
         ),
@@ -112,3 +134,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+

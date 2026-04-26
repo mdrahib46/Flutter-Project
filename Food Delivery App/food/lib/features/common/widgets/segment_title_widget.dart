@@ -3,14 +3,16 @@ import 'package:food/utils/app_colors.dart';
 import 'package:food/utils/app_text_style.dart';
 
 
-class CategorySegmentTitleWidget extends StatelessWidget {
-  const CategorySegmentTitleWidget({
+class SegmentTitleWidget extends StatelessWidget {
+  const SegmentTitleWidget({
     super.key,
     required this.title,
-    required this.onTap,
+    this.onTap, this.isSeeAllVisible = true,
   });
   final String title;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
+
+  final bool isSeeAllVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CategorySegmentTitleWidget extends StatelessWidget {
         const Spacer(),
         InkWell(
           onTap: onTap,
-          child: Row(
+          child: isSeeAllVisible ?   Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('See All', style: TextStyle(fontWeight: FontWeight.w500)),
@@ -31,7 +33,7 @@ class CategorySegmentTitleWidget extends StatelessWidget {
                 color: AppColors.hintTextColor,
               ),
             ],
-          ),
+          ) : SizedBox(),
         ),
       ],
     );

@@ -3,26 +3,30 @@ import 'package:food/utils/app_colors.dart';
 
 class RestaurantCard extends StatelessWidget {
   const RestaurantCard({
-    super.key, required this.restaurantTitle, required this.itemList, required this.imageUrl,
+    super.key, required this.restaurantTitle, required this.itemList, required this.imageUrl, required this.onTap,
   });
 
   final String imageUrl, restaurantTitle, itemList;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 200,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadiusGeometry.circular(16),
-            image: DecorationImage(
-              image: NetworkImage(
-                imageUrl,
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            height: 200,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadiusGeometry.circular(16),
+              image: DecorationImage(
+                image: NetworkImage(
+                  imageUrl,
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
         ),
