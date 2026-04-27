@@ -34,11 +34,12 @@ class _RestaurantViewScreenState extends State<RestaurantViewScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CarouselSlider(
-              options: CarouselOptions(height: 300.0, viewportFraction: 1),
+              options: CarouselOptions(height: 300.0, viewportFraction: 1.02),
               items: [1, 2, 3, 4, 5].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 2),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Color(0xff98A8B8),
@@ -47,9 +48,7 @@ class _RestaurantViewScreenState extends State<RestaurantViewScreen> {
                           bottomRight: Radius.circular(12),
                         ),
                       ),
-                      child: Center(
-                        child: Text('text $i', style: TextStyle(fontSize: 16.0)),
-                      ),
+                      child: Image(image: NetworkImage('https://www.bangladeshmonitor.com.bd/hotel_img/H0329.jpg'), fit: BoxFit.cover,),
                     );
                   },
                 );

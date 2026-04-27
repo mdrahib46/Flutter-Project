@@ -19,7 +19,7 @@ class AppActionButton extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.leadingIcnBtnClr,
+            color: AppColors.leadingIcnBtnClr.withOpacity(0.7),
           ),
           child: const Padding(
             padding: EdgeInsets.all(8),
