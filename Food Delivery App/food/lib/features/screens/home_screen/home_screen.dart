@@ -3,7 +3,8 @@ import 'package:food/features/common/widgets/app_action__btn.dart';
 import 'package:food/features/common/widgets/custom_app_bard.dart';
 import 'package:food/features/common/widgets/segment_title_widget.dart';
 import 'package:food/features/screens/home_screen/widgets/food_category_item_card.dart';
-import 'package:food/features/screens/home_screen/widgets/restaurantCard.dart';
+import 'package:food/features/common/widgets/restaurantCard.dart';
+import 'package:food/features/screens/item_screen/item_screen.dart';
 import 'package:food/features/screens/restaurent_view/restaurant_view.dart';
 import 'package:food/utils/app_colors.dart';
 import 'package:food/utils/restaurent_and_item_list.dart';
@@ -95,7 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: FoodCategoryItemCard(
                         imageUrl: itemCategory.imageUrl,
                         cardTitle: itemCategory.title,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, ItemScreen.name);
+                        },
                       ),
                     );
                   },

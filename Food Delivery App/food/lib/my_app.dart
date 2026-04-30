@@ -8,6 +8,7 @@ import 'package:food/features/screens/home_screen/home_screen.dart';
 import 'package:food/features/screens/onboardings/onboarding_screen.dart';
 import 'package:food/features/screens/restaurent_view/restaurant_view.dart';
 import 'package:food/utils/app_colors.dart';
+import 'features/screens/item_screen/item_screen.dart';
 import 'features/screens/onboardings/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -70,7 +71,11 @@ class MyApp extends StatelessWidget {
           widget = const HomeScreen();
         } else if (settings.name == RestaurantViewScreen.name) {
           widget = const RestaurantViewScreen();
-        } else {
+        }
+        else if (settings.name == ItemScreen.name) {
+          widget = const ItemScreen();
+        }
+        else {
           widget = const Scaffold(body: Center(child: Text("No route found")));
         }
 

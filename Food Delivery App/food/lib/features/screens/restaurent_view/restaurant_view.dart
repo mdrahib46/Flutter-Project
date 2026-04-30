@@ -26,7 +26,57 @@ class _RestaurantViewScreenState extends State<RestaurantViewScreen> {
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
         showBackButton: true,
-        actionBtn: [AppActionButton(onTap: () {})],
+        actionBtn: [AppActionButton(onTap: () {
+         showDialog(context: context, builder: (context){
+           return  AlertDialog(
+             backgroundColor: Colors.white,
+             contentPadding: EdgeInsets.zero,
+             shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8)),
+             content: Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Column(
+                 mainAxisSize: MainAxisSize.min,
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Row(children: [
+                     Text('Filter your search',),
+                     const Spacer(),
+                     AppActionButton(onTap: (){}, icon: Icons.close, iconColor: AppColors.appleIconBg,)
+                   ],),
+
+                   Text('OFFERS'),
+
+                   Wrap(
+                     crossAxisAlignment: WrapCrossAlignment.start,
+                     spacing: 10,
+                     runSpacing: 10,
+                     children: [
+                       _buildChip('Delivery'),
+                       _buildChip('Pick Up'),
+                       _buildChip('Offer'),
+                       _buildChip('Online payment available'),
+                     ],
+                   ),
+                   const SizedBox(height: 16,),
+                   Text('DELI'),
+                   Wrap(
+                     crossAxisAlignment: WrapCrossAlignment.start,
+                     spacing: 10,
+                     runSpacing: 10,
+                     children: [
+                       _buildChip('15 - 20 min'),
+                       _buildChip('20 min'),
+                       _buildChip('30 min'),
+                     ],
+                   ),
+
+
+                 ],
+               ),
+             ),
+           );
+         });
+        })],
       ),
 
       body: SingleChildScrollView(
@@ -103,7 +153,6 @@ class _RestaurantViewScreenState extends State<RestaurantViewScreen> {
                           padding: const EdgeInsets.only(right: 8),
                           child: ChoiceChip(
                             showCheckmark: false,
-        
                             label: Text(
                               'Burger',
                               style: TextStyle(
@@ -167,4 +216,24 @@ class _RestaurantViewScreenState extends State<RestaurantViewScreen> {
       ),
     );
   }
+
+
+  Widget _buildChip(String text) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 14,
+          color: Colors.black87,
+        ),
+      ),
+    );
+  }
+
 }
