@@ -1,4 +1,5 @@
 
+import 'package:dummy_bkash/core/asset_image_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/app_colors.dart';
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: .spaceBetween,
                 children: [
                   Image(
-                    image: AssetImage('assets/bkash.png'),
+                    image: AssetImage(AssetImagePath.bkashImgPng),
                     height: 50,
                     color: AppColors.primary,
                   ),
