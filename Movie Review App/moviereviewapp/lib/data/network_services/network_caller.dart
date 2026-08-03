@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:moviereviewapp/data/services/network_response.dart';
+import 'package:logger/logger.dart';
 
+import 'network_response.dart';
 
 /// On Error Response form API
 // {
@@ -12,6 +13,7 @@ import 'package:moviereviewapp/data/services/network_response.dart';
 // }
 
 class NetworkCaller {
+  final Logger _logger = Logger();
   final Map<String, String> Function() headers;
 
   NetworkCaller({required this.headers});
@@ -21,7 +23,11 @@ class NetworkCaller {
     try {
       Uri uri = Uri.parse(url);
 
+      _logRequest(url, headers: headers());
+
       final Response response = await get(uri, headers: headers());
+
+      _logResponse(response);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final decodeResponse = jsonDecode(response.body);
@@ -47,6 +53,9 @@ class NetworkCaller {
     }
   }
 
+
+
+  /// Post Request
   Future<NetworkResponse> postRequest({
     required String url,
     Map<String, dynamic>? body,
@@ -54,11 +63,15 @@ class NetworkCaller {
     try {
       Uri uri = Uri.parse(url);
 
+      _logRequest(url, headers: headers(), requestBody: body);
+
       final Response response = await post(
         uri,
         body: jsonEncode(body),
         headers: headers(),
       );
+
+      _logResponse(response);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final encodedResponse = response.body;
@@ -82,6 +95,34 @@ class NetworkCaller {
         statusCode: -1,
         errorMessage: e.toString(),
       );
+    }
+  }
+
+  void _logRequest(
+    String url, {
+    Map<String, dynamic>? requestBody,
+    Map<String, dynamic>? headers,
+  }) {
+    _logger.d("""
+      Url:=> $url,
+      Header:=> $headers,
+      Request Body:=> $requestBody
+    """);
+  }
+
+  void _logResponse(Response response) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      _logger.i("""
+        Url:=> ${response.request?.url},
+        Header:=> ${response.request?.headers},
+        Response Body:=> ${response.body}
+      """);
+    } else {
+      _logger.e('''
+      Url => ${response.request?.url}
+      Headers => ${response.headers}
+      Response Body => ${response.body} 
+    ''');
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:moviereviewapp/core/app_strings.dart';
-import 'package:moviereviewapp/data/services/api_services.dart';
+
+import '../data/network_services/network_caller.dart';
 
 NetworkCaller getNetworkCaller() {
   return NetworkCaller(

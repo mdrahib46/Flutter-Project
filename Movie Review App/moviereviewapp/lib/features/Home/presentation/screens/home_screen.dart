@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-
+import '../../../shared/presentation/widget/custom_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  static const String name = '/Home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -11,6 +13,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('Movie Review App'),));
+    return Scaffold(
+      appBar: CustomAppBar( ),
+      drawer: Drawer(),
+      body: Column(children: []),
+    );
   }
 }
+
+

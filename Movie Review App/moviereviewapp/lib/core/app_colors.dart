@@ -7,4 +7,6 @@ class AppColors {
   static const Color textPrimary = Colors.white;
   static const Color textSecondary = Colors.grey;
   static const Color accent = Color(0xFFFFC107); // Amber for rating
+
+  static const leadingBtnColor = Color(0xFF6F7F88);
 }
