@@ -9,4 +9,14 @@ class AppColors {
   static const Color accent = Color(0xFFFFC107); // Amber for rating
 
   static const leadingBtnColor = Color(0xFF6F7F88);
+  static const titleTextColor = Color(0xFFFFCA45);
+
+
+
+  static const drawerBg = Color(0xFF001C29);
+
+  static const Color iconPrimary = Colors.white;
+
+
+
 }
