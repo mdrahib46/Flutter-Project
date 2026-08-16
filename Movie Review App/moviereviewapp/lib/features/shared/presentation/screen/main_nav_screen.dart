@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviereviewapp/features/wishlist/presentation/screen/wishlist_screen.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../Home/presentation/screens/home_screen.dart';
@@ -17,7 +18,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
   final List<Widget> _screens = const [
     HomeScreen(),
     HomeScreen(),
-    HomeScreen(),
+    WishlistScreen(),
     HomeScreen(),
   ];
 

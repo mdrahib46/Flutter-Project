@@ -11,7 +11,10 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.primary,
     fontFamily: "Poppins",
     colorSchemeSeed: AppColors.textPrimary,
-    appBarTheme: AppBarTheme(backgroundColor: AppColors.primary),
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.textPrimary,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.accent,

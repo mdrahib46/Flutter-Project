@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/app/app_theme.dart';
 
 import '../features/auth/presentation/screens/splash_screen.dart';
 import 'app_routes.dart';
-
+import 'app_theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       initialRoute: SplashScreen.name,
       onGenerateRoute: AppRoutes.onGeneratedRoute,
