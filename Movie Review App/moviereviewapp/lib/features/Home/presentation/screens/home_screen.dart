@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 20),
 
               MovieSectionHeader(title: "New Releases", onTap: () {}),
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -44,9 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+
 
               const SizedBox(height: 16),
               MovieSectionHeader(title: "Upcoming Movies", onTap: () {}),
+
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -59,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 16),
               MovieSectionHeader(title: "Ranked Movies", onTap: () {}),
               SingleChildScrollView(

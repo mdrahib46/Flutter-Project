@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../app/asset_path.dart';
 
 class MovieCard extends StatelessWidget {
@@ -8,33 +9,29 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      width: 120,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Card(
-            margin: EdgeInsets.zero,
-            clipBehavior: Clip.antiAlias,
-            child: Image.asset(
-              AssetPath.dummyImage,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
+    return GestureDetector(
+      onTap: (){},
+      child: SizedBox(
+        height: 140,
+        width: 88,
+        child: Column(
+          mainAxisSize: .min,
+          children: [
+            Container(
+              height: 110,
+              width: 88,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                    image: AssetImage(AssetPath.dummyImage),
+                    fit: BoxFit.cover
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          const Text(
-            'The Boy and the Heron',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
+            const SizedBox(height: 4,),
+            Text('The boy with heron', overflow: TextOverflow.ellipsis,)
+          ],
+        ),
       ),
     );
   }
