@@ -18,9 +18,10 @@ class _MainNavScreenState extends State<MainNavScreen> {
   final List<Widget> _screens = const [
     HomeScreen(),
     HomeScreen(),
-    // WishlistScreen(),
+
+    WishlistScreen(),
     HomeScreen(),
-    HomeScreen(),
+
   ];
 
   @override

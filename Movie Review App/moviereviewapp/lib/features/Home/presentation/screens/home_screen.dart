@@ -32,50 +32,49 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 20),
 
               MovieSectionHeader(title: "New Releases", onTap: () {}),
-
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (int i = 0; i < 5; i++)
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child: MovieCard(),
-                      ),
-                  ],
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 190,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) => const Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: SizedBox(width: 120, child: MovieCard()),
+                  ),
                 ),
               ),
-
 
               const SizedBox(height: 16),
               MovieSectionHeader(title: "Upcoming Movies", onTap: () {}),
-
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (int i = 0; i < 5; i++)
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child: MovieCard(),
-                      ),
-                  ],
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 190,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) => const Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: SizedBox(width: 120, child: MovieCard()),
+                  ),
                 ),
               ),
+
               const SizedBox(height: 16),
               MovieSectionHeader(title: "Ranked Movies", onTap: () {}),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (int i = 0; i < 5; i++)
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child: MovieCard(),
-                      ),
-                  ],
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 190,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) => const Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: SizedBox(width: 120, child: MovieCard()),
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -83,5 +82,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
