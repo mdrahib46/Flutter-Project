@@ -3,6 +3,7 @@ import 'package:moviereviewapp/features/wishlist/presentation/screen/wishlist_sc
 
 import '../../../../core/app_colors.dart';
 import '../../../Home/presentation/screens/home_screen.dart';
+import '../../../search/presentation/screen/search_screen.dart';
 
 class MainNavScreen extends StatefulWidget {
   static const String name = '/bottom-nav';
@@ -17,8 +18,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
 
   final List<Widget> _screens = const [
     HomeScreen(),
-    HomeScreen(),
-
+    SearchScreen(),
     WishlistScreen(),
     HomeScreen(),
 
