@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviereviewapp/features/profile/presentation/screen/profile_screen.dart';
 import 'package:moviereviewapp/features/wishlist/presentation/screen/wishlist_screen.dart';
 
 import '../../../../core/app_colors.dart';
@@ -20,7 +21,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
     HomeScreen(),
     SearchScreen(),
     WishlistScreen(),
-    HomeScreen(),
+    ProfileScreen(),
 
   ];
 
