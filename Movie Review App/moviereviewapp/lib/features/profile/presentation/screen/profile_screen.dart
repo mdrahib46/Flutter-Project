@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/features/auth/presentation/widget/GlassContainerBG.dart';
 
+import '../../../../app/asset_path.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -18,47 +20,91 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             children: [
               GlassContainerBG(
-                height: 250,
+                height: 280,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Column(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
                     children: [
-                      const SizedBox(height: 100),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          CircleAvatar(radius: 48),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Md Rahib',
-                                style: TextStyle(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                      // Cover Image
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: SizedBox(
+                          height: 180,
+                          width: double.infinity,
+                          child: Image.asset(
+                            AssetPath.dummyImage2,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
+                        bottom: 10,
+                        left: 10,
+                        right: 10,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const CircleAvatar(
+                              radius: 56,
+                              backgroundImage: AssetImage(
+                                AssetPath.dummyImage,
                               ),
-                              Text('@rahib086'),
-                              const SizedBox(height: 16),
-                              Wrap(
-                                spacing: 8,
+                            ),
+
+                            const SizedBox(width: 12),
+
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text(
-                                    '500',
-                                    style: TextStyle(fontWeight: FontWeight.w600),
+                                  const Text(
+                                    'Md Rahib',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
-                                  Text('Followers'),
-                                  const SizedBox(width: 26),
-                                  Text(
-                                    '420',
-                                    style: TextStyle(fontWeight: FontWeight.w600),
+
+                                  const Text(
+                                    '@rahib086',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                  Text('Followings'),
+
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        '500',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      const Text('Followers'),
+
+                                      const SizedBox(width: 20),
+
+                                      const Text(
+                                        '420',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      const Text('Following'),
+                                    ],
+                                  ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
