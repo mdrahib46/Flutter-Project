@@ -14,7 +14,7 @@ class MovieSectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(title, style: Theme.of(context).textTheme.titleMedium),
+        Text('New Releases', style: Theme.of(context).textTheme.titleMedium),
         const Spacer(),
         TextButton(
           onPressed: onTap,

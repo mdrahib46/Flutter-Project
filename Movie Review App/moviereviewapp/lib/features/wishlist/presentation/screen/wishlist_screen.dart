@@ -13,23 +13,22 @@ class _WishlistScreenState extends State<WishlistScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wishlist'),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list)),
-        ],
+        title: Text('Wishlist'),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.filter_list))],
       ),
+
       body: SafeArea(
-        child: GridView.builder(
+        child:GridView.builder(
           padding: const EdgeInsets.all(12),
           itemCount: 20,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 0.6,
+            crossAxisCount: 4,
+            mainAxisSpacing: 12,
+            crossAxisSpacing: 8,
+            childAspectRatio: 0.55,
           ),
           itemBuilder: (context, index) {
-            return const MovieCard();
+            return MovieCard();
           },
         ),
       ),

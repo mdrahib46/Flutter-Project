@@ -4,12 +4,18 @@ import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, this.showBackButton = false, this.title});
+  const CustomAppBar({
+    super.key,
+    this.showBackButton = false,
+    this.title,
+    this.actions,
+  });
 
   final bool showBackButton;
   final String? title;
+  final List<Widget>? actions;
 
-  static const double _toolbarHeight = 40;
+  static const double _toolbarHeight = 56;
   static const double _leadingWidth = 56;
 
   @override
@@ -19,10 +25,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       toolbarHeight: _toolbarHeight,
       leadingWidth: _leadingWidth,
-      titleSpacing: 0,
+      titleSpacing: showBackButton ? 0 : 16,
       elevation: 0,
       centerTitle: false,
-
       leading: showBackButton
           ? _buildBackButton(context)
           : Builder(
@@ -33,16 +38,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 },
               ),
             ),
-
       title: title == null
-          ? Image.asset(AssetPath.textLogo, height: 48)
-          : Text(title!, style: Theme.of(context).textTheme.titleLarge),
+          ? Image.asset(AssetPath.textLogo, height: 40)
+          : Text(
+              title!,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+      actions: actions,
     );
   }
 
   Widget _buildBackButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16),
+      padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
       child: Material(
         color: AppColors.leadingBtnColor,
         borderRadius: BorderRadius.circular(8),
@@ -53,7 +63,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
-              size: 24,
+              size: 20,
             ),
           ),
         ),
