@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/features/auth/presentation/widget/GlassContainerBG.dart';
+import 'package:moviereviewapp/features/shared/presentation/widget/movie_section_header.dart';
 
 import '../../../../app/asset_path.dart';
+import '../../../shared/presentation/widget/movie_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -110,6 +112,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 16,),
+              Row(
+                spacing: 16,
+                children: [
+                  Expanded(
+                    child: GlassContainerBG(
+                      height: 90,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            spacing: 8,
+                            children: const [
+                              Icon(
+                                Icons.movie_creation_outlined,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                              Text(
+                                'Movie Watched',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            '2000',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  Expanded(
+                    child: GlassContainerBG(
+                      height: 90,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            spacing: 8,
+                            children: const [
+                              Icon(
+                                Icons.watch_later_outlined,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                              Text(
+                                'Time Spent',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            '24m 30d 23h',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              MovieSectionHeader(title: 'Favourite', onTap: (){}),
+              SizedBox(
+                height: 170,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return const Padding(
+                      padding: EdgeInsets.only(right: 12),
+                      child: MovieCard(),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),
