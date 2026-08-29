@@ -206,9 +206,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
 
-                // ================= FAVOURITE =================
                 MovieSectionHeader(title: 'Favourite', onTap: () {}),
 
                 const SizedBox(height: 8),
