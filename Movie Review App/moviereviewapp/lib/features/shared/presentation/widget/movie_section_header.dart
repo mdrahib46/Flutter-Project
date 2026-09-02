@@ -5,10 +5,10 @@ import '../../../../core/app_colors.dart';
 
 
 class MovieSectionHeader extends StatelessWidget {
-  const MovieSectionHeader({super.key, required this.title, required this.onTap});
+  const MovieSectionHeader({super.key, required this.title, this.onTap});
 
   final String title;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class MovieSectionHeader extends StatelessWidget {
         const Spacer(),
         TextButton(
           onPressed: onTap,
-          child: const Text(
+          child: onTap != null ?  Text(
             'View All',
             style: TextStyle(color: AppColors.accent),
-          ),
+          ): SizedBox(),
         ),
       ],
     );

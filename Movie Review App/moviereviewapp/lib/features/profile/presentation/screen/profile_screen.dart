@@ -14,8 +14,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -23,14 +28,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                // ================= PROFILE HEADER =================
                 GlassContainerBG(
                   height: 280,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Stack(
                       children: [
-                        // Cover Image
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: SizedBox(
@@ -208,7 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 const SizedBox(height: 16),
 
-                MovieSectionHeader(title: 'Favourite', onTap: () {}),
+                MovieSectionHeader(title: 'Favourite',),
 
                 const SizedBox(height: 8),
 
@@ -226,10 +229,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 16),
 
-
-                MovieSectionHeader(title: 'Recently Watched', onTap: () {}),
+                MovieSectionHeader(title: 'Recently Watched', ),
 
                 const SizedBox(height: 8),
 
@@ -246,6 +247,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                   ),
                 ),
+                
+                MovieSectionHeader(title: 'Recent Reviews'),
+                GlassContainerBG(child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(children: [
+                    Expanded(
+                      flex: 3,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Review by Dilhara'),
+                            Text('Furiosa: A Mad Max Saga', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
+                            Wrap(
+                              children: [
+                                ...List.generate(
+                                  5,
+                                      (index) => Icon(
+                                    Icons.star, color: Colors.amber,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the ',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 4,
+                            )
+
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+
+                        )),
+                  ],),
+                ))
               ],
             ),
           ),
