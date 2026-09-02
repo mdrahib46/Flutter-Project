@@ -258,13 +258,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Review by Dilhara'),
-                            Text('Furiosa: A Mad Max Saga', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
+                            Text('Furiosa: A Mad Max Saga', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, ),),
                             Wrap(
                               children: [
                                 ...List.generate(
                                   5,
                                       (index) => Icon(
                                     Icons.star, color: Colors.amber,
+                                        size: 16,
                                   ),
                                 ),
                               ],
@@ -272,7 +273,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Text(
                               'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the ',
                               overflow: TextOverflow.ellipsis,
-                              maxLines: 4,
+                              maxLines: 5,
                             )
 
                           ],
