@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/profile/presentation/widget/recently_wathched_movie.dart';
+import 'package:moviereviewapp/core/app_colors.dart';
+import 'package:moviereviewapp/features/profile/presentation/widget/recently_watched_movie.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../auth/presentation/widget/GlassContainerBG.dart';
@@ -14,13 +17,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -123,9 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 const SizedBox(height: 16),
 
-                // ================= STATISTICS =================
                 Row(
-                  spacing: 16,
                   children: [
                     Expanded(
                       child: GlassContainerBG(
@@ -135,13 +131,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              spacing: 8,
                               children: const [
                                 Icon(
                                   Icons.movie_creation_outlined,
                                   color: Colors.white,
                                   size: 20,
                                 ),
+                                SizedBox(width: 8),
                                 Text(
                                   'Movie Watched',
                                   style: TextStyle(
@@ -151,9 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ],
                             ),
-
                             const SizedBox(height: 4),
-
                             const Text(
                               '2000',
                               style: TextStyle(
@@ -166,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-
+                    const SizedBox(width: 16),
                     Expanded(
                       child: GlassContainerBG(
                         height: 90,
@@ -175,13 +169,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              spacing: 8,
                               children: const [
                                 Icon(
                                   Icons.watch_later_outlined,
                                   color: Colors.white,
                                   size: 20,
                                 ),
+                                SizedBox(width: 8),
                                 Text(
                                   'Time Spent',
                                   style: TextStyle(
@@ -191,9 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ],
                             ),
-
                             const SizedBox(height: 4),
-
                             const Text(
                               '24m 30d 23h',
                               style: TextStyle(
@@ -211,7 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 const SizedBox(height: 16),
 
-                MovieSectionHeader(title: 'Favourite',),
+                MovieSectionHeader(title: 'Favourite'),
 
                 const SizedBox(height: 8),
 
@@ -229,8 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
 
-
-                MovieSectionHeader(title: 'Recently Watched', ),
+                MovieSectionHeader(title: 'Recently Watched'),
 
                 const SizedBox(height: 8),
 
@@ -247,44 +238,119 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                   ),
                 ),
-                
+
                 MovieSectionHeader(title: 'Recent Reviews'),
-                GlassContainerBG(child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(children: [
-                    Expanded(
-                      flex: 3,
-                        child: Column(
+                GlassContainerBG(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Review by
+                              RichText(
+                                text: const TextSpan(
+                                  text: 'Review by ',
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 12,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Dilara',
+                                      style: TextStyle(
+                                        color: Colors.amber,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              const SizedBox(height: 2),
+
+                              // Movie title
+                              const Text(
+                                'Furiosa: A Mad Max Saga',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16,
+                                ),
+                              ),
+
+                              const SizedBox(height: 2),
+
+                              Wrap(
+                                children: [
+                                  ...List.generate(4, (index)=> Icon(Icons.star, color: Colors.amber, size: 16,)),
+                                ],
+                              ),
+
+                              const SizedBox(height: 8),
+
+                              // Description
+                              const ReadMoreText(
+                                'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the Citadel.',
+                                trimLines: 5,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: ' Read more ›',
+                                trimExpandedText: ' Read less',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  height: 1.45,
+                                ),
+                                moreStyle: TextStyle(
+                                  color: Colors.amber,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                lessStyle: TextStyle(
+                                  color: AppColors.accent,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const SizedBox(width: 12),
+
+                        Column(
+                          spacing: 4,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Review by Dilhara'),
-                            Text('Furiosa: A Mad Max Saga', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, ),),
-                            Wrap(
-                              children: [
-                                ...List.generate(
-                                  5,
-                                      (index) => Icon(
-                                    Icons.star, color: Colors.amber,
-                                        size: 16,
-                                  ),
-                                ),
-                              ],
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                AssetPath.dummyImage,
+                                width: 130,
+                                height: 170,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            Text(
-                              'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the ',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 5,
-                            )
 
+                            Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              spacing: 4,
+                              children: [
+                              Icon(Icons.favorite, size: 18, color: AppColors.accent,),
+                                Text('1.1 k'),
+                                const Spacer(),
+                                Icon(Icons.message_outlined, size: 18, color: AppColors.accent,),
+                                Text('0.1 k')
+                            ],)
                           ],
-                        )),
-                    Expanded(
-                        flex: 1,
-                        child: Column(
-
-                        )),
-                  ],),
-                ))
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -292,5 +358,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
 }

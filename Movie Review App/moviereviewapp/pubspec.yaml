@@ -39,6 +39,7 @@ dependencies:
   http: ^1.6.0
   logger: ^2.7.0
   hugeicons: ^1.1.7
+  readmore: ^3.0.0
 
 dev_dependencies:
   flutter_test:

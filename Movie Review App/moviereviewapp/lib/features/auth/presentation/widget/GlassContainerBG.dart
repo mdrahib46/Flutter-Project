@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class GlassContainerBG extends StatelessWidget {
   final Widget child;
   final double width;
-  final double height;
+  final double? height;
   final BorderRadius borderRadius;
 
   const GlassContainerBG({
     super.key,
     required this.child,
     this.width = double.infinity,
-    this.height = 200,
+    this.height,
     this.borderRadius = const BorderRadius.all(Radius.circular(24)),
   });
 
