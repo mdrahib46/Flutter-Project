@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/core/app_colors.dart';
-import 'package:moviereviewapp/features/profile/presentation/widget/recently_watched_movie.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../app/asset_path.dart';
+import '../../../../core/app_colors.dart';
 import '../../../auth/presentation/widget/GlassContainerBG.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
+import '../widget/recently_watched_movie.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
