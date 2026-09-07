@@ -1,15 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_screen.dart';
 
 import '../../../../app/asset_path.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key});
+  const MovieCard({super.key, this.onTap});
+
+  final VoidCallback? onTap;
+
+
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap ?? () => _onTapMovieScreen(context),
       child: SizedBox(
         width: 100,
         child: Column(
@@ -42,5 +47,9 @@ class MovieCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onTapMovieScreen(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const MovieScreen()));
   }
 }

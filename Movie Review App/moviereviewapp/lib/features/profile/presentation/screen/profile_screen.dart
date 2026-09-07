@@ -213,9 +213,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return const Padding(
+                      return Padding(
                         padding: EdgeInsets.only(right: 12),
-                        child: MovieCard(),
+                        child: MovieCard(onTap: () {  },),
                       );
                     },
                   ),

@@ -37,9 +37,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
-                    itemBuilder: (context, index) => const Padding(
+                    itemBuilder: (context, index) =>  Padding(
                       padding: EdgeInsets.only(right: 12),
-                      child: SizedBox(width: 120, child: MovieCard()),
+                      child: SizedBox(width: 120, child: MovieCard(onTap: () {  },)),
                     ),
                   ),
                 ),
