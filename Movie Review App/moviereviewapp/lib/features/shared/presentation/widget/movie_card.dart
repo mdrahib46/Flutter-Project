@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_screen.dart';
-
 import '../../../../app/asset_path.dart';
 
 class MovieCard extends StatelessWidget {
@@ -9,12 +7,11 @@ class MovieCard extends StatelessWidget {
 
   final VoidCallback? onTap;
 
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ?? () => _onTapMovieScreen(context),
+      behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: 100,
         child: Column(
@@ -31,9 +28,7 @@ class MovieCard extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 5),
-
             const Text(
               'The Boy and the Heron',
               maxLines: 1,
@@ -49,7 +44,10 @@ class MovieCard extends StatelessWidget {
     );
   }
 
-  void _onTapMovieScreen(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> const MovieScreen()));
+  void _onTapMovieScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MovieScreen()),
+    );
   }
 }

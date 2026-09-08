@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_screen.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
@@ -13,10 +14,17 @@ class UpcomingMovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: .min,
-      children: [
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MovieScreen()),
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: SizedBox(
@@ -66,6 +74,7 @@ class UpcomingMovieCard extends StatelessWidget {
           ),
         ),
       ],
+    ),
     );
   }
 }

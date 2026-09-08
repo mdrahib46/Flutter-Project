@@ -1,16 +1,16 @@
-
 import 'package:flutter/material.dart';
-import 'package:readmore/readmore.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
-import '../../../auth/presentation/widget/GlassContainerBG.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
+import '../widget/movie_review_card.dart';
 import '../widget/recently_watched_movie.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  static const String name = '/Profile';
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -20,341 +20,276 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                GlassContainerBG(
-                  height: 280,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: SizedBox(
-                            height: 180,
-                            width: double.infinity,
-                            child: Image.asset(
-                              AssetPath.dummyImage2,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-
-                        // Profile Information
-                        Positioned(
-                          bottom: 10,
-                          left: 10,
-                          right: 10,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              const CircleAvatar(
-                                radius: 56,
-                                backgroundImage: AssetImage(
-                                  AssetPath.dummyImage,
-                                ),
-                              ),
-
-                              const SizedBox(width: 12),
-
-                              Expanded(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'Md Rahib',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 2),
-
-                                    const Text(
-                                      '@rahib086',
-                                      style: TextStyle(fontSize: 14),
-                                    ),
-
-                                    const SizedBox(height: 6),
-
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          '500',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 4),
-                                        const Text('Followers'),
-
-                                        const SizedBox(width: 20),
-
-                                        const Text(
-                                          '420',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 4),
-                                        const Text('Following'),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _profileHeader(context),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
                   children: [
-                    Expanded(
-                      child: GlassContainerBG(
-                        height: 90,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.movie_creation_outlined,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Movie Watched',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            const Text(
-                              '2000',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    _statsSection(),
+                    const SizedBox(height: 24),
+                    MovieSectionHeader(
+                      title: 'Favorites',
+                      onTap: () {},
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: GlassContainerBG(
-                        height: 90,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.watch_later_outlined,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Time Spent',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            const Text(
-                              '24m 30d 23h',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    const SizedBox(height: 12),
+                    _favoritesList(),
+                    const SizedBox(height: 24),
+                    MovieSectionHeader(
+                      title: 'Recently Watched Movies',
+                      onTap: () {},
                     ),
+                    const SizedBox(height: 12),
+                    _recentlyWatchedList(),
+                    const SizedBox(height: 24),
+                    const MovieSectionHeader(
+                      title: 'Recent Reviews',
+                    ),
+                    const SizedBox(height: 12),
+                    const MovieReviewCard(),
+                    const SizedBox(height: 30),
                   ],
                 ),
-
-                const SizedBox(height: 16),
-
-                MovieSectionHeader(title: 'Favourite'),
-
-                const SizedBox(height: 8),
-
-                SizedBox(
-                  height: 190,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child: MovieCard(onTap: () {  },),
-                      );
-                    },
-                  ),
-                ),
-
-                MovieSectionHeader(title: 'Recently Watched'),
-
-                const SizedBox(height: 8),
-
-                SizedBox(
-                  height: 190,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child: RecentlyWatchedMovies(),
-                      );
-                    },
-                  ),
-                ),
-
-                MovieSectionHeader(title: 'Recent Reviews'),
-                GlassContainerBG(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Review by
-                              RichText(
-                                text: const TextSpan(
-                                  text: 'Review by ',
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 12,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: 'Dilara',
-                                      style: TextStyle(
-                                        color: Colors.amber,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              const SizedBox(height: 2),
-
-                              // Movie title
-                              const Text(
-                                'Furiosa: A Mad Max Saga',
-                                style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 16,
-                                ),
-                              ),
-
-                              const SizedBox(height: 2),
-
-                              Wrap(
-                                children: [
-                                  ...List.generate(4, (index)=> Icon(Icons.star, color: Colors.amber, size: 16,)),
-                                ],
-                              ),
-
-                              const SizedBox(height: 8),
-
-                              // Description
-                              const ReadMoreText(
-                                'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the Citadel.',
-                                trimLines: 5,
-                                trimMode: TrimMode.Line,
-                                trimCollapsedText: ' Read more ›',
-                                trimExpandedText: ' Read less',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  height: 1.45,
-                                ),
-                                moreStyle: TextStyle(
-                                  color: Colors.amber,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                lessStyle: TextStyle(
-                                  color: AppColors.accent,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(width: 12),
-
-                        Column(
-                          spacing: 4,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                AssetPath.dummyImage,
-                                width: 130,
-                                height: 170,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-
-                            Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 4,
-                              children: [
-                              Icon(Icons.favorite, size: 18, color: AppColors.accent,),
-                                Text('1.1 k'),
-                                const Spacer(),
-                                Icon(Icons.message_outlined, size: 18, color: AppColors.accent,),
-                                Text('0.1 k')
-                            ],)
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _profileHeader(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      height: 280,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Colors.blue.withOpacity(0.5), width: 2),
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF1B3A4B),
+            Color(0xFF001C29),
+          ],
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(22),
+        child: Stack(
+          children: [
+            // Banner
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 180,
+              child: Image.asset(
+                AssetPath.splashBanner,
+                fit: BoxFit.cover,
+              ),
+            ),
+            // Gradient on banner
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 180,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black.withOpacity(0.5),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // Back Button
+            Positioned(
+              top: 16,
+              left: 16,
+              child: InkWell(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.arrow_back, color: Colors.white, size: 20),
+                ),
+              ),
+            ),
+
+            // Profile Image (Centered overlapping banner and bottom section)
+            Positioned(
+              top: 120,
+              left: 20,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFF001C29), width: 4),
+                ),
+                child: const CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage(AssetPath.dummyImage2),
+                ),
+              ),
+            ),
+
+            // User Info (Positioned next to and below the overlap)
+            Positioned(
+              bottom: 25,
+              left: 130,
+              right: 16,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Dilhara Sannasgala',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    '@dilhara24',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      _followInfo('100', 'Followers'),
+                      const SizedBox(width: 16),
+                      _followInfo('120', 'Following'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _followInfo(String count, String label) {
+    return Row(
+      children: [
+        Text(
+          count,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+          ),
+        ),
+        const SizedBox(width: 4),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontSize: 12,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _statsSection() {
+    return Row(
+      children: [
+        Expanded(
+          child: _statCard('Movies Watched', '2000', Icons.movie_outlined),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: _statCard('Time Spent', '24m 30d 23h', Icons.access_time),
+        ),
+      ],
+    );
+  }
+
+  Widget _statCard(String title, String value, IconData icon) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF385263).withOpacity(0.4),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white10),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: Colors.white70, size: 16),
+              const SizedBox(width: 6),
+              Text(
+                title,
+                style: const TextStyle(color: Colors.white70, fontSize: 12),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _favoritesList() {
+    return SizedBox(
+      height: 160,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.only(right: 12),
+            child: MovieCard(),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _recentlyWatchedList() {
+    return SizedBox(
+      height: 180,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: RecentlyWatchedMovies(
+              rating: (index % 2 == 0) ? 4 : 5,
+            ),
+          );
+        },
       ),
     );
   }

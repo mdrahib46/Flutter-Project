@@ -28,7 +28,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
             childAspectRatio: 0.55,
           ),
           itemBuilder: (context, index) {
-            return MovieCard(onTap: () {  },);
+            return const MovieCard();
           },
         ),
       ),

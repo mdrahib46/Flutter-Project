@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:readmore/readmore.dart';
+
+import '../../../../core/app_colors.dart';
 
 class MovieReviewCard extends StatelessWidget {
   const MovieReviewCard({super.key});
@@ -7,19 +10,19 @@ class MovieReviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF385263),
+        color: const Color(0xFF385263).withOpacity(0.3),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: Colors.white24,
-          width: 2,
+          color: Colors.white12,
+          width: 1,
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // LEFT SIDE
+          // LEFT SIDE - CONTENT
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,14 +33,14 @@ class MovieReviewCard extends StatelessWidget {
                     text: 'Review by ',
                     style: TextStyle(
                       color: Colors.white70,
-                      fontSize: 12,
+                      fontSize: 10,
                     ),
                     children: [
                       TextSpan(
-                        text: 'Dilara',
+                        text: 'Dilhara',
                         style: TextStyle(
-                          color: Colors.amber,
-                          fontWeight: FontWeight.bold,
+                          color: AppColors.accent,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -51,60 +54,47 @@ class MovieReviewCard extends StatelessWidget {
                   'Furiosa: A Mad Max Saga',
                   style: TextStyle(
                     color: Colors.white70,
-                    fontSize: 16,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
 
-                const SizedBox(height: 2),
+                const SizedBox(height: 4),
 
                 // Rating
-                const Row(
-                  children: [
-                    Icon(
+                Row(
+                  children: List.generate(
+                    4,
+                    (index) => const Icon(
                       Icons.star,
-                      color: Colors.amber,
-                      size: 18,
+                      color: AppColors.accent,
+                      size: 14,
                     ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 18,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 18,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 18,
-                    ),
-                  ],
+                  ),
                 ),
 
-                const SizedBox(height: 8),
+                const SizedBox(height: 12),
 
                 // Description
                 const ReadMoreText(
-                  'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the Citadel.',
+                  'As the world fell, young Furiosa is snatched from the Green Place of Many Mothers and falls into the hands of a great Biker Horde led by the Warlord Dementus. Sweeping through the Wasteland they come across the Ci...',
                   trimLines: 5,
                   trimMode: TrimMode.Line,
-                  trimCollapsedText: ' Read more ›',
-                  trimExpandedText: ' Read less',
+                  trimCollapsedText: 'Read More ›',
+                  trimExpandedText: ' Read Less',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 17,
-                    height: 1.45,
+                    fontSize: 11,
+                    height: 1.5,
                   ),
                   moreStyle: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 11,
+                    color: AppColors.accent,
+                    fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
                   lessStyle: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 11,
+                    color: AppColors.accent,
+                    fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -112,17 +102,52 @@ class MovieReviewCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 12),
+          const SizedBox(width: 16),
 
-          // RIGHT SIDE - POSTER
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              'assets/images/furiosa.jpg',
-              width: 130,
-              height: 185,
-              fit: BoxFit.cover,
-            ),
+          // RIGHT SIDE - POSTER & STATS
+          Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  AssetPath.dummyImage,
+                  width: 90,
+                  height: 120,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 90,
+                      height: 120,
+                      color: Colors.white10,
+                      child: const Icon(
+                        Icons.error_outline,
+                        color: Colors.white24,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.favorite, color: AppColors.accent, size: 16),
+                  const SizedBox(width: 4),
+                  const Text(
+                    '1.1K',
+                    style: TextStyle(color: Colors.white70, fontSize: 10),
+                  ),
+                  const SizedBox(width: 10),
+                  const Icon(Icons.mode_comment_outlined,
+                      color: AppColors.accent, size: 16),
+                  const SizedBox(width: 4),
+                  const Text(
+                    '0.6K',
+                    style: TextStyle(color: Colors.white70, fontSize: 10),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),

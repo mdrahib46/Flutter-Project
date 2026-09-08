@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/app_colors.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 
 class RecentlyWatchedMovies extends StatelessWidget {
@@ -16,7 +17,7 @@ class RecentlyWatchedMovies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Movie Card
-          MovieCard(onTap: () {  },),
+          const MovieCard(),
 
           const SizedBox(height: 6),
 
@@ -28,7 +29,7 @@ class RecentlyWatchedMovies extends StatelessWidget {
                 5,
                 (index) => Icon(
                   index < rating ? Icons.star : Icons.star_border,
-                  color: Colors.amber,
+                  color: AppColors.accent,
                   size: 15,
                 ),
               ),
