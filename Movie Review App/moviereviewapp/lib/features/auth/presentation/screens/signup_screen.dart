@@ -26,7 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              AssetPath.splashBanner, // Using a different background as per screenshot
+              AssetPath.dummyImage,
               fit: BoxFit.cover,
             ),
           ),
