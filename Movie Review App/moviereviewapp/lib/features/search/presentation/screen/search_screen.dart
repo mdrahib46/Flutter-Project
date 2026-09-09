@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+import '../../../shared/presentation/widget/custom_appbar.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
 import '../widget/upcomming_movie_card.dart';
@@ -16,6 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(showBackButton: true, title: 'Search'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -66,8 +68,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12.0),
                     child: Row(
                       spacing: 8,
                       children: [
@@ -77,7 +79,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           size: 60,
                         ),
                         Text('Brows All Movies', style: TextStyle(fontSize: 26)),
-                        const Spacer(),
+                        Spacer(),
                         Icon(Icons.arrow_forward, size: 40, color: Colors.white),
                       ],
                     ),
@@ -87,7 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 const SizedBox(height: 16),
             
                 MovieSectionHeader(title: 'Upcoming Movies', onTap: () {}),
-                Text('Add to the wishlist'),
+                const Text('Add to the wishlist'),
                 const SizedBox(height: 16,),
             
                 SizedBox(
@@ -103,8 +105,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     },
                   ),
                 ),
-            
-            
               ],
             ),
           ),

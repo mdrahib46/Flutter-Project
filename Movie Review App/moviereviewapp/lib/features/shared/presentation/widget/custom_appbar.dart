@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
+import '../provider/bottom_nav_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -25,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       toolbarHeight: _toolbarHeight,
       leadingWidth: _leadingWidth,
-      titleSpacing: showBackButton ? 0 : 16,
+      titleSpacing: showBackButton ? 10 : 16,
       elevation: 0,
       centerTitle: false,
       leading: showBackButton
@@ -58,7 +60,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         borderRadius: BorderRadius.circular(8),
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
-          onTap: () => Navigator.of(context).pop(),
+          onTap: () {
+            final navProvider =
+                Provider.of<BottomNavProvider>(context, listen: false);
+            if (navProvider.selectedIndex != 0) {
+              navProvider.navigateToHome();
+            } else if (Navigator.canPop(context)) {
+              Navigator.of(context).pop();
+            }
+          },
           child: const Center(
             child: Icon(
               Icons.arrow_back_rounded,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/features/shared/presentation/widget/movie_card.dart';
+import 'package:moviereviewapp/features/shared/presentation/widget/custom_appbar.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -12,8 +13,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Wishlist'),
+      appBar: CustomAppBar(
+        showBackButton: true,
+        title: 'Wishlist',
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.filter_list))],
       ),
 

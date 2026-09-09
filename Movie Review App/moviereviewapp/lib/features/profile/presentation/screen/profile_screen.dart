@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
+import '../../../shared/presentation/provider/bottom_nav_provider.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
 import '../widget/movie_review_card.dart';
@@ -119,7 +121,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               top: 16,
               left: 16,
               child: InkWell(
-                onTap: () => Navigator.pop(context),
+                onTap: () {
+                  final navProvider =
+                      Provider.of<BottomNavProvider>(context, listen: false);
+                  if (navProvider.selectedIndex != 0) {
+                    navProvider.navigateToHome();
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
