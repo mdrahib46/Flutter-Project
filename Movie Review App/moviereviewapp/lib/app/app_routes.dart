@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/features/Home/presentation/screens/home_screen.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/splash_screen.dart';
+import 'package:moviereviewapp/features/auth/presentation/screens/login_screen.dart';
+import 'package:moviereviewapp/features/auth/presentation/screens/signup_screen.dart';
 import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
 
 class AppRoutes {
@@ -11,6 +13,10 @@ class AppRoutes {
     switch (settings.name) {
       case SplashScreen.name:
         widget = SplashScreen();
+      case LoginScreen.name:
+        widget = LoginScreen();
+      case SignupScreen.name:
+        widget = SignupScreen();
       case MainNavScreen.name:
         widget = MainNavScreen();
 

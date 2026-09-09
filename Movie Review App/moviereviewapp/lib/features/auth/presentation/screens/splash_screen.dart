@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
 import 'package:moviereviewapp/core/app_strings.dart';
-import 'package:moviereviewapp/features/Home/presentation/screens/home_screen.dart';
-import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
+import 'package:moviereviewapp/features/auth/presentation/screens/login_screen.dart';
 
 import '../../../../app/asset_path.dart';
 
@@ -70,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _moveToNextScreen,
-                      child: Text("Get Started"),
+                      child: const Text("Get Started"),
                     ),
                   ],
                 ),
@@ -85,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _moveToNextScreen() {
     Navigator.pushNamedAndRemoveUntil(
       context,
-      MainNavScreen.name,
+      LoginScreen.name,
       (route) => false,
     );
   }
