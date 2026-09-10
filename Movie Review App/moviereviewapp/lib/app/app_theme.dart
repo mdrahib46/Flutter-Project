@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
 import '../core/app_colors.dart';
 
@@ -6,6 +7,29 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData get lightTheme => _lightTheme;
+
+  static PinTheme get defaultPinTheme => PinTheme(
+        width: 56,
+        height: 60,
+        textStyle: const TextStyle(
+          fontSize: 22,
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      );
+
+  static PinTheme get focusedPinTheme => defaultPinTheme.copyWith(
+        decoration: defaultPinTheme.decoration!.copyWith(
+          border: Border.all(
+            color: AppColors.titleTextColor,
+            width: 1.5,
+          ),
+        ),
+      );
 
   static final _lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.primary,

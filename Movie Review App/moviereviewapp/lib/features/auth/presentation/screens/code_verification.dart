@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:moviereviewapp/app/app_theme.dart';
 import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
 import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
+import 'package:pinput/pinput.dart';
 
 class CodeVerificationScreen extends StatefulWidget {
   const CodeVerificationScreen({super.key});
@@ -29,10 +30,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
         children: [
           // Background Image
           Positioned.fill(
-            child: Image.asset(
-              AssetPath.dummyImage1,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(AssetPath.dummyImage, fit: BoxFit.cover),
           ),
           // Gradient Overlay
           Positioned.fill(
@@ -84,12 +82,12 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                       const Text(
                         'Code Verification',
                         style: TextStyle(
-                          color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
                       const Text(
                         'Check your email for verification code, and you can continue.',
                         textAlign: TextAlign.center,
@@ -99,74 +97,48 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                      // Pin Code Fields Wrapper
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 24,
+                          horizontal: 16,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: PinCodeTextField(
-                          appContext: context,
+                        child: Pinput(
                           length: 4,
-                          obscureText: false,
-                          animationType: AnimationType.fade,
-                          pinTheme: PinTheme(
-                            shape: PinCodeFieldShape.box,
-                            borderRadius: BorderRadius.circular(16),
-                            fieldHeight: 56,
-                            fieldWidth: 56,
-                            activeFillColor: Colors.white.withValues(alpha: 0.1),
-                            inactiveFillColor: Colors.white.withValues(alpha: 0.1),
-                            selectedFillColor: Colors.white.withValues(alpha: 0.15),
-                            activeColor: Colors.white24,
-                            inactiveColor: Colors.transparent,
-                            selectedColor: AppColors.accent,
-                          ),
-                          cursorColor: Colors.white,
-                          animationDuration: const Duration(milliseconds: 300),
-                          enableActiveFill: true,
                           controller: _pinController,
-                          keyboardType: TextInputType.number,
-                          textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          onCompleted: (value) {
-                            // Handle completion
-                          },
-                          onChanged: (value) {},
-                          beforeTextPaste: (text) {
-                            return true;
-                          },
+                          defaultPinTheme: AppTheme.defaultPinTheme,
+                          focusedPinTheme: AppTheme.focusedPinTheme,
+                          submittedPinTheme: AppTheme.defaultPinTheme,
                         ),
                       ),
                       const SizedBox(height: 32),
-                      // Continue Button
-                      ElevatedButton(
-                        onPressed: () {
-                          // Handle verification logic
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.accent,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 56,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // TODO: Add verification logic
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.titleTextColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 0,
                           ),
-                          minimumSize: const Size(double.infinity, 54),
-                          elevation: 0,
-                        ),
-                        child: const Text(
-                          'Continue',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                          child: const Text(
+                            'Continue',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
