@@ -7,6 +7,7 @@ import 'package:moviereviewapp/features/auth/presentation/screens/code_verificat
 import 'package:moviereviewapp/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/signup_screen.dart';
 import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
+import 'package:moviereviewapp/features/logger/presentation/screen/logger_screen.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGeneratedRoute(RouteSettings settings) {
@@ -28,6 +29,8 @@ class AppRoutes {
 
       case HomeScreen.name:
         widget = HomeScreen();
+      case LoggerScreen.name:
+        widget = LoggerScreen();
     }
 
     return MaterialPageRoute(builder: (ctx) => widget);

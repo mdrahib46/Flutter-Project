@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/app_colors.dart';
+import '../../../logger/presentation/screen/logger_screen.dart';
 import 'drawer_list_tile.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -22,11 +23,11 @@ class AppDrawer extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 32,
-                  backgroundImage: AssetImage("assets/images/profile.jpg"),
+                  backgroundImage: AssetImage("assets/images/img.png"),
                 ),
                 SizedBox(height: 12),
                 Text(
-                  "Md Nahid",
+                  "Md Rahib",
                   style: TextStyle(
                     color: AppColors.titleTextColor,
                     fontSize: 20,
@@ -49,7 +50,10 @@ class AppDrawer extends StatelessWidget {
           DrawerListTile(
             iconData: Icons.calendar_today_outlined,
             title: 'Logger',
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, LoggerScreen.name);
+            },
           ),
           DrawerListTile(
             iconData: Icons.import_contacts,
