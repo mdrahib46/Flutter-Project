@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/auth/presentation/screens/code_verification.dart';
-import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
+import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+class CodeVerificationScreen extends StatefulWidget {
+  const CodeVerificationScreen({super.key});
 
-  static const String name = '/forgot-password';
+  static const String name = '/code-verification';
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<CodeVerificationScreen> createState() => _CodeVerificationScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final TextEditingController _emailController = TextEditingController();
+class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
+  final TextEditingController _pinController = TextEditingController();
+
+  @override
+  void dispose() {
+    _pinController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +30,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              AssetPath.dummyImage,
+              AssetPath.dummyImage1,
               fit: BoxFit.cover,
             ),
           ),
-          // Gradient Overlay to darken background
+          // Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -64,7 +70,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
             ),
           ),
-
           // Glass Container at Bottom
           Align(
             alignment: Alignment.bottomCenter,
@@ -77,7 +82,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text(
-                        'Forgot Password?',
+                        'Code Verification',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
@@ -86,7 +91,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'If you need help resetting your password, we can help by sending you a link to reset it.',
+                        'Check your email for verification code, and you can continue.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white70,
@@ -94,26 +99,64 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                      // Email Field
-                      _buildTextField(
-                        controller: _emailController,
-                        hintText: 'Email',
-                        icon: Icons.email_outlined,
+                      // Pin Code Fields Wrapper
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: PinCodeTextField(
+                          appContext: context,
+                          length: 4,
+                          obscureText: false,
+                          animationType: AnimationType.fade,
+                          pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(16),
+                            fieldHeight: 56,
+                            fieldWidth: 56,
+                            activeFillColor: Colors.white.withValues(alpha: 0.1),
+                            inactiveFillColor: Colors.white.withValues(alpha: 0.1),
+                            selectedFillColor: Colors.white.withValues(alpha: 0.15),
+                            activeColor: Colors.white24,
+                            inactiveColor: Colors.transparent,
+                            selectedColor: AppColors.accent,
+                          ),
+                          cursorColor: Colors.white,
+                          animationDuration: const Duration(milliseconds: 300),
+                          enableActiveFill: true,
+                          controller: _pinController,
+                          keyboardType: TextInputType.number,
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          onCompleted: (value) {
+                            // Handle completion
+                          },
+                          onChanged: (value) {},
+                          beforeTextPaste: (text) {
+                            return true;
+                          },
+                        ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 32),
                       // Continue Button
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, CodeVerificationScreen.name);
+                          // Handle verification logic
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.accent,
-                          foregroundColor: Colors.black,
+                          foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
                           minimumSize: const Size(double.infinity, 54),
+                          elevation: 0,
                         ),
                         child: const Text(
                           'Continue',
@@ -131,35 +174,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    required IconData icon,
-  }) {
-    return TextField(
-      controller: controller,
-      style: const TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.white54),
-        prefixIcon: Icon(icon, color: Colors.white54),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Colors.grey, width: 1),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Colors.grey, width: 1),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.accent, width: 1),
-        ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       ),
     );
   }

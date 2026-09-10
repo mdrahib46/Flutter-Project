@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/signup_screen.dart';
 import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
+import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
-import '../widget/GlassContainerBG.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -40,8 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.2),
-                    Colors.black.withOpacity(0.6),
+                    Colors.black.withValues(alpha: 0.2),
+                    Colors.black.withValues(alpha: 0.6),
                   ],
                 ),
               ),
@@ -204,27 +204,27 @@ class _LoginScreenState extends State<LoginScreen> {
     required IconData icon,
     bool isPassword = false,
   }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: TextField(
-        controller: controller,
-        obscureText: isPassword,
-        style: const TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.white54),
-          prefixIcon: Icon(icon, color: Colors.white54),
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(color: AppColors.accent, width: 1),
-          ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+    return TextFormField(
+      controller: controller,
+      obscureText: isPassword,
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.white54),
+        prefixIcon: Icon(icon, color: Colors.white54),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: const BorderSide(color: Colors.grey, width: 1),
         ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: const BorderSide(color:Colors.grey, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: const BorderSide(color: AppColors.accent, width: 1),
+        ),
+        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       ),
     );
   }

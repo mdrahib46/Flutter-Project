@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../app/asset_path.dart';
-import '../../../../core/app_colors.dart';
-import '../../../auth/presentation/widget/GlassContainerBG.dart';
+import 'package:moviereviewapp/app/asset_path.dart';
+import 'package:moviereviewapp/core/app_colors.dart';
+import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key});
@@ -65,18 +65,18 @@ class _MovieScreenState extends State<MovieScreen> {
                   left: 10,
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundColor: Colors.black26,
-                      child: const Icon(Icons.arrow_back, color: Colors.white),
+                      child: Icon(Icons.arrow_back, color: Colors.white),
                     ),
                   ),
                 ),
                 Positioned(
                   top: 10,
                   right: 10,
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     backgroundColor: Colors.black26,
-                    child: const Icon(Icons.share_outlined, color: Colors.white),
+                    child: Icon(Icons.share_outlined, color: Colors.white),
                   ),
                 ),
               ],
@@ -183,7 +183,7 @@ class _MovieScreenState extends State<MovieScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -301,7 +301,7 @@ class _MovieScreenState extends State<MovieScreen> {
                     height: 100,
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.05),
+                      color: Colors.white.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
@@ -375,7 +375,7 @@ class _MovieScreenState extends State<MovieScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -417,7 +417,7 @@ class _MovieScreenState extends State<MovieScreen> {
               children: const [
                 Icon(Icons.favorite, size: 12, color: Colors.white60),
                 SizedBox(width: 4),
-                const Text('1.1k', style: TextStyle(color: Colors.white60, fontSize: 10)),
+                Text('1.1k', style: TextStyle(color: Colors.white60, fontSize: 10)),
               ],
             ),
           ),
