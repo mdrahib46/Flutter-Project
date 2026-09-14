@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
 import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
+import '../provider/movie_detail_provider.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key});
@@ -13,16 +15,21 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
+    final movieDetailProvider = Provider.of<MovieDetailProvider>(context);
+    final movie = movieDetailProvider.selectedMovie;
+
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: movieDetailProvider.isLoading 
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeaderCard(),
+                _buildHeaderCard(movie?.title),
                 const SizedBox(height: 20),
                 _buildActionButtons(),
                 const SizedBox(height: 20),
@@ -41,7 +48,7 @@ class _MovieScreenState extends State<MovieScreen> {
     );
   }
 
-  Widget _buildHeaderCard() {
+  Widget _buildHeaderCard(String? title) {
     return GlassContainerBG(
       height: null,
       borderRadius: BorderRadius.circular(32),
@@ -99,9 +106,9 @@ class _MovieScreenState extends State<MovieScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Harry Potter and the Prisoner of Azkaban',
-                        style: TextStyle(
+                      Text(
+                        title ?? 'Harry Potter and the Prisoner of Azkaban',
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

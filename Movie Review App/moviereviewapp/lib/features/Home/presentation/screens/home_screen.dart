@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../shared/presentation/widget/custom_appbar.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
 import '../widget/app_drawer.dart';
 import '../widget/user_greet.dart';
+import '../provider/home_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,11 +20,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<HomeProvider>(context);
+
     return Scaffold(
       appBar: CustomAppBar(),
       drawer: AppDrawer(),
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: homeProvider.isLoading 
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 10),
 
-              _movieList(),
+              _movieList(homeProvider.newReleases.length),
 
               const SizedBox(height: 20),
 
@@ -54,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 10),
 
-              _movieList(),
+              _movieList(homeProvider.upcomingMovies.length),
 
               const SizedBox(height: 20),
 
@@ -66,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               const SizedBox(height: 10),
 
-              _movieList(),
+              _movieList(homeProvider.rankedMovies.length),
 
               const SizedBox(height: 20),
             ],
@@ -76,12 +82,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _movieList() {
+  Widget _movieList(int count) {
     return SizedBox(
       height: 170,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: count > 0 ? count : 5, // Fallback to 5 dummy items if empty
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.only(right: 12),

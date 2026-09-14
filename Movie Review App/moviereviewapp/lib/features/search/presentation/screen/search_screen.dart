@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 
 import '../../../shared/presentation/widget/custom_appbar.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
 import '../widget/upcomming_movie_card.dart';
+import '../provider/search_provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -14,8 +16,12 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final searchProvider = Provider.of<SearchProvider>(context);
+
     return Scaffold(
       appBar: const CustomAppBar(showBackButton: true, title: 'Search'),
       body: SafeArea(
@@ -26,26 +32,30 @@ class _SearchScreenState extends State<SearchScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
-                  decoration: InputDecoration(
+                  controller: _searchController,
+                  onChanged: (value) => searchProvider.searchMovies(value),
+                  decoration: const InputDecoration(
                     hintText: 'Search....',
                     suffixIcon: Icon(Icons.search),
                   ),
                 ),
                 const SizedBox(height: 16),
+                
+                if (searchProvider.isSearching)
+                  const Center(child: CircularProgressIndicator())
+                else if (searchProvider.searchResults.isNotEmpty)
+                  ...[
+                    const MovieSectionHeader(title: 'Search Results'),
+                    const SizedBox(height: 8),
+                    _movieList(searchProvider.searchResults.length),
+                    const SizedBox(height: 16),
+                  ],
+
                 MovieSectionHeader(title: 'Trending this month', onTap: () {}),
                 const SizedBox(height: 8),
-                SizedBox(
-                  height: 190,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) => const Padding(
-                      padding: EdgeInsets.only(right: 12),
-                      child: SizedBox(width: 120, child: MovieCard()),
-                    ),
-                  ),
-                ),
+                _movieList(searchProvider.trendingMovies.length),
                 const SizedBox(height: 16),
+                
                 Container(
                   height: 100,
                   width: double.infinity,
@@ -96,7 +106,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   height: 220,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: searchProvider.upcomingMovies.isNotEmpty ? searchProvider.upcomingMovies.length : 5,
                     itemBuilder: (context, index) {
                       return const Padding(
                         padding: EdgeInsets.only(right: 12),
@@ -112,5 +122,20 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
+
+  Widget _movieList(int count) {
+    return SizedBox(
+      height: 190,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: count > 0 ? count : 5,
+        itemBuilder: (context, index) => const Padding(
+          padding: EdgeInsets.only(right: 12),
+          child: SizedBox(width: 120, child: MovieCard()),
+        ),
+      ),
+    );
+  }
 }
+
 
