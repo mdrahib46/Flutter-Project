@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/signup_screen.dart';
 import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
@@ -6,6 +7,7 @@ import 'package:moviereviewapp/features/auth/presentation/widget/glass_container
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
+import '../provider/auth_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,11 +19,38 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _handleLogin() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    
+    final error = await authProvider.login(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+
+    if (error == null) {
+      if (mounted) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          MainNavScreen.name,
+          (route) => false,
+        );
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error), backgroundColor: Colors.red),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -100,11 +129,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 32),
-                        // Username Field
+                        // Email Field
                         _buildTextField(
-                          controller: _usernameController,
-                          hintText: 'Username',
-                          icon: Icons.person_outline,
+                          controller: _emailController,
+                          hintText: 'Email',
+                          icon: Icons.email_outlined,
                         ),
                         const SizedBox(height: 16),
                         // Password Field
@@ -134,13 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 24),
                         // Login Button
                         ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              MainNavScreen.name,
-                              (route) => false,
-                            );
-                          },
+                          onPressed: authProvider.isLoading ? null : _handleLogin,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.accent,
                             foregroundColor: Colors.black,
@@ -150,7 +173,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             minimumSize: const Size(double.infinity, 54),
                           ),
-                          child: const Text(
+                          child: authProvider.isLoading 
+                            ? const CircularProgressIndicator(color: Colors.black)
+                            : const Text(
                             'Login',
                             style: TextStyle(
                               fontSize: 18,

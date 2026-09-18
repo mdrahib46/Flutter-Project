@@ -8,6 +8,7 @@ import '../features/Home/presentation/provider/home_provider.dart';
 import '../features/wishlist/presentation/provider/wishlist_provider.dart';
 import '../features/search/presentation/provider/search_provider.dart';
 import '../features/movie_screen/presentation/provider/movie_detail_provider.dart';
+import '../features/auth/presentation/provider/auth_provider.dart' as auth;
 import 'app_routes.dart';
 import 'app_theme.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => auth.AuthProvider()),
         ChangeNotifierProvider(create: (_) => BottomNavProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()),

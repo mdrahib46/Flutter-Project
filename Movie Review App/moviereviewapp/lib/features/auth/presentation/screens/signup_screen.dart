@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/login_screen.dart';
 import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
 import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
+import '../provider/auth_provider.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -18,8 +20,35 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  Future<void> _handleSignup() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    
+    final error = await authProvider.signUp(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+      username: _usernameController.text.trim(),
+    );
+
+    if (error == null) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Account created successfully! Please login.')),
+        );
+        Navigator.pushReplacementNamed(context, LoginScreen.name);
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error), backgroundColor: Colors.red),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -122,9 +151,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(height: 32),
                         // Signup Button
                         ElevatedButton(
-                          onPressed: () {
-                            // Handle signup logic
-                          },
+                          onPressed: authProvider.isLoading ? null : _handleSignup,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.accent,
                             foregroundColor: Colors.black,
@@ -134,7 +161,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             minimumSize: const Size(double.infinity, 54),
                           ),
-                          child: const Text(
+                          child: authProvider.isLoading 
+                            ? const CircularProgressIndicator(color: Colors.black)
+                            : const Text(
                             'Sign Up',
                             style: TextStyle(
                               fontSize: 18,
