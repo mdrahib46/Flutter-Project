@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   User? _user;
   bool _isLoading = false;
 
@@ -28,8 +30,20 @@ class AuthProvider extends ChangeNotifier {
         password: password,
       );
       
-      // Update display name with username
+      // Update display name with username in Firebase Auth
       await result.user?.updateDisplayName(username);
+      
+      // Save extra user info in Firestore
+      await _firestore.collection('users').doc(result.user!.uid).set({
+        'uid': result.user!.uid,
+        'email': email,
+        'username': username,
+        'createdAt': FieldValue.serverTimestamp(),
+        'profileImage': '',
+        'followers': 0,
+        'following': 0,
+        'moviesWatched': 0,
+      });
       
       _setLoading(false);
       return null; // Success
