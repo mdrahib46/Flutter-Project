@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/app_colors.dart';
+import '../../../../data/model/movie_model.dart';
+import '../../../shared/presentation/screen/movie_list_screen.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
 import '../provider/profile_provider.dart';
@@ -61,14 +63,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 24),
                     MovieSectionHeader(
                       title: 'Favorites',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          MovieListScreen.name,
+                          arguments: {
+                            'title': 'Favorites',
+                            'movies': <MovieModel>[], // Pass favorite movies here
+                          },
+                        );
+                      },
                     ),
                     const SizedBox(height: 12),
                     _favoritesList(),
                     const SizedBox(height: 24),
                     MovieSectionHeader(
                       title: 'Recently Watched Movies',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          MovieListScreen.name,
+                          arguments: {
+                            'title': 'Recently Watched Movies',
+                            'movies': <MovieModel>[], // Pass recently watched movies here
+                          },
+                        );
+                      },
                     ),
                     const SizedBox(height: 12),
                     _recentlyWatchedList(),

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:moviereviewapp/app/asset_path.dart';
-import 'package:moviereviewapp/core/app_colors.dart';
-import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
+
+import '../../../../app/asset_path.dart';
+import '../../../../core/app_colors.dart';
+import '../../../auth/presentation/widget/glass_container_bg.dart';
 import '../provider/movie_detail_provider.dart';
 
-class MovieScreen extends StatefulWidget {
-  const MovieScreen({super.key});
+class MovieDetailsScreen extends StatefulWidget {
+  const MovieDetailsScreen({super.key});
 
   @override
-  State<MovieScreen> createState() => _MovieScreenState();
+  State<MovieDetailsScreen> createState() => _MovieDetailsScreenState();
 }
 
-class _MovieScreenState extends State<MovieScreen> {
+class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final movieDetailProvider = Provider.of<MovieDetailProvider>(context);

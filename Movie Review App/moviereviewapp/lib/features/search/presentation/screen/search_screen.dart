@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:provider/provider.dart';
 
+import '../../../shared/presentation/screen/movie_list_screen.dart';
 import '../../../shared/presentation/widget/custom_appbar.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
@@ -51,7 +52,19 @@ class _SearchScreenState extends State<SearchScreen> {
                     const SizedBox(height: 16),
                   ],
 
-                MovieSectionHeader(title: 'Trending this month', onTap: () {}),
+                MovieSectionHeader(
+                  title: 'Trending this month',
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      MovieListScreen.name,
+                      arguments: {
+                        'title': 'Trending this month',
+                        'movies': searchProvider.trendingMovies,
+                      },
+                    );
+                  },
+                ),
                 const SizedBox(height: 8),
                 _movieList(searchProvider.trendingMovies.length),
                 const SizedBox(height: 16),
@@ -98,7 +111,19 @@ class _SearchScreenState extends State<SearchScreen> {
             
                 const SizedBox(height: 16),
             
-                MovieSectionHeader(title: 'Upcoming Movies', onTap: () {}),
+                MovieSectionHeader(
+                  title: 'Upcoming Movies',
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      MovieListScreen.name,
+                      arguments: {
+                        'title': 'Upcoming Movies',
+                        'movies': searchProvider.upcomingMovies,
+                      },
+                    );
+                  },
+                ),
                 const Text('Add to the wishlist'),
                 const SizedBox(height: 16,),
             

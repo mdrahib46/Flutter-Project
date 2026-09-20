@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_screen.dart';
+import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_details_screen.dart';
 import '../../../../app/asset_path.dart';
 
 class MovieCard extends StatelessWidget {
@@ -47,7 +47,7 @@ class MovieCard extends StatelessWidget {
   void _onTapMovieScreen(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const MovieScreen()),
+      MaterialPageRoute(builder: (context) => const MovieDetailsScreen()),
     );
   }
 }

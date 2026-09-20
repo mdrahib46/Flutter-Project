@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_screen.dart';
+import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_details_screen.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
@@ -18,7 +18,7 @@ class UpcomingMovieCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const MovieScreen()),
+          MaterialPageRoute(builder: (context) => const MovieDetailsScreen()),
         );
       },
       child: Column(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../shared/presentation/screen/movie_list_screen.dart';
 import '../../../shared/presentation/widget/custom_appbar.dart';
 import '../../../shared/presentation/widget/movie_card.dart';
 import '../../../shared/presentation/widget/movie_section_header.dart';
@@ -43,7 +44,16 @@ class _HomeScreenState extends State<HomeScreen> {
               // New Releases
               MovieSectionHeader(
                 title: 'New Releases',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    MovieListScreen.name,
+                    arguments: {
+                      'title': 'New Releases',
+                      'movies': homeProvider.newReleases,
+                    },
+                  );
+                },
               ),
 
               const SizedBox(height: 10),
@@ -55,7 +65,16 @@ class _HomeScreenState extends State<HomeScreen> {
               // Upcoming Movies
               MovieSectionHeader(
                 title: 'Upcoming Movies',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    MovieListScreen.name,
+                    arguments: {
+                      'title': 'Upcoming Movies',
+                      'movies': homeProvider.upcomingMovies,
+                    },
+                  );
+                },
               ),
 
               const SizedBox(height: 10),
@@ -67,7 +86,16 @@ class _HomeScreenState extends State<HomeScreen> {
               // Ranked Movies
               MovieSectionHeader(
                 title: 'Ranked Movies',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    MovieListScreen.name,
+                    arguments: {
+                      'title': 'Ranked Movies',
+                      'movies': homeProvider.rankedMovies,
+                    },
+                  );
+                },
               ),
 
               const SizedBox(height: 10),
