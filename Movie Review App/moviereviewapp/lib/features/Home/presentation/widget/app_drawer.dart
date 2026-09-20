@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/app_colors.dart';
+import '../../../auth/presentation/provider/auth_provider.dart';
+import '../../../auth/presentation/screens/login_screen.dart';
 import '../../../logger/presentation/screen/logger_screen.dart';
+import '../../../shared/presentation/provider/bottom_nav_provider.dart';
 import 'drawer_list_tile.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -11,6 +15,9 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = context.watch<AuthProvider>();
+    final user = authProvider.user;
+    
     return Drawer(
       backgroundColor: AppColors.drawerBg,
       child: ListView(
@@ -27,7 +34,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  "Md Rahib",
+                  authProvider.username ?? user?.displayName ?? "User",
                   style: TextStyle(
                     color: AppColors.titleTextColor,
                     fontSize: 20,
@@ -35,7 +42,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "nahid@example.com",
+                  user?.email ?? "email@example.com",
                   style: TextStyle(color: AppColors.textSecondary),
                 ),
               ],
@@ -45,7 +52,10 @@ class AppDrawer extends StatelessWidget {
           DrawerListTile(
             iconData: Icons.movie_outlined,
             title: 'Movies',
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              context.read<BottomNavProvider>().setSelectedIndex(0);
+            },
           ),
           DrawerListTile(
             iconData: Icons.calendar_today_outlined,
@@ -63,7 +73,10 @@ class AppDrawer extends StatelessWidget {
           DrawerListTile(
             iconData: Icons.assignment_outlined,
             title: 'Wishlist',
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              context.read<BottomNavProvider>().setSelectedIndex(2);
+            },
           ),
           DrawerListTile(
             iconData: Icons.format_list_numbered_sharp,
@@ -74,7 +87,14 @@ class AppDrawer extends StatelessWidget {
           DrawerListTile(
             iconData: Icons.logout_rounded,
             title: 'Logout',
-            onTap: () {},
+            onTap: () {
+              context.read<AuthProvider>().logout();
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                LoginScreen.name,
+                (route) => false,
+              );
+            },
           ),
         ],
       ),

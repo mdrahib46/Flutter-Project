@@ -8,29 +8,37 @@ import 'package:moviereviewapp/features/auth/presentation/screens/forgot_passwor
 import 'package:moviereviewapp/features/auth/presentation/screens/signup_screen.dart';
 import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
 import 'package:moviereviewapp/features/logger/presentation/screen/logger_screen.dart';
+import 'package:moviereviewapp/features/shared/presentation/screen/movie_list_screen.dart';
+import '../data/model/movie_model.dart';
 
 class AppRoutes {
   static Route<dynamic>? onGeneratedRoute(RouteSettings settings) {
-    Widget widget = SizedBox();
+    Widget widget = const SizedBox();
 
     switch (settings.name) {
       case SplashScreen.name:
-        widget = SplashScreen();
+        widget = const SplashScreen();
       case LoginScreen.name:
-        widget = LoginScreen();
+        widget = const LoginScreen();
       case SignupScreen.name:
-        widget = SignupScreen();
+        widget = const SignupScreen();
       case ForgotPasswordScreen.name:
-        widget = ForgotPasswordScreen();
+        widget = const ForgotPasswordScreen();
       case CodeVerificationScreen.name:
-        widget = CodeVerificationScreen();
+        widget = const CodeVerificationScreen();
       case MainNavScreen.name:
-        widget = MainNavScreen();
+        widget = const MainNavScreen();
 
       case HomeScreen.name:
-        widget = HomeScreen();
+        widget = const HomeScreen();
       case LoggerScreen.name:
-        widget = LoggerScreen();
+        widget = const LoggerScreen();
+      case MovieListScreen.name:
+        final args = settings.arguments as Map<String, dynamic>;
+        widget = MovieListScreen(
+          title: args['title'] as String,
+          movies: args['movies'] as List<MovieModel>,
+        );
     }
 
     return MaterialPageRoute(builder: (ctx) => widget);

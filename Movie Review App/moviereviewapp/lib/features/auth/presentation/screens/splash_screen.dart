@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
 import 'package:moviereviewapp/core/app_strings.dart';
+import 'package:moviereviewapp/core/services/shared_pref_service.dart';
 import 'package:moviereviewapp/features/auth/presentation/screens/login_screen.dart';
+import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
 
 import '../../../../app/asset_path.dart';
 
@@ -14,6 +16,33 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginState();
+  }
+
+  Future<void> _checkLoginState() async {
+    // Wait for a few seconds to show splash
+    await Future.delayed(const Duration(seconds: 3));
+    
+    bool isLoggedIn = await SharedPrefService.getLoginState();
+    
+    if (mounted) {
+      if (isLoggedIn) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          MainNavScreen.name,
+          (route) => false,
+        );
+      } else {
+        // Stay on splash or we can move automatically to login if preferred.
+        // The user has a "Get Started" button, so maybe we stay here.
+        // But "automatically login" usually means skipping splash if logged in.
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,11 +110,14 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  void _moveToNextScreen() {
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      LoginScreen.name,
-      (route) => false,
-    );
+  Future<void> _moveToNextScreen() async {
+    bool isLoggedIn = await SharedPrefService.getLoginState();
+    if (mounted) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        isLoggedIn ? MainNavScreen.name : LoginScreen.name,
+        (route) => false,
+      );
+    }
   }
 }
