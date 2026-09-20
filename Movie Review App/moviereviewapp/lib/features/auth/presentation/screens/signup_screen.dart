@@ -27,14 +27,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
     if (username.isEmpty || email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all fields'), backgroundColor: Colors.orange),
+        const SnackBar(content: Text('Please fill in all fields'), backgroundColor: AppColors.accent),
       );
       return;
     }
 
     if (password.length < 6) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Password must be at least 6 characters'), backgroundColor: Colors.orange),
+        const SnackBar(content: Text('Password must be at least 6 characters'), backgroundColor: AppColors.accent),
       );
       return;
     }
@@ -180,7 +180,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             minimumSize: const Size(double.infinity, 54),
                           ),
                           child: authProvider.isLoading 
-                            ? const CircularProgressIndicator(color: Colors.black)
+                            ? const CircularProgressIndicator(color: AppColors.accent)
                             : const Text(
                             'Sign Up',
                             style: TextStyle(

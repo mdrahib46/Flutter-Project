@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:moviereviewapp/features/auth/presentation/screens/forgot_password_screen.dart';
-import 'package:moviereviewapp/features/auth/presentation/screens/signup_screen.dart';
-import 'package:moviereviewapp/features/shared/presentation/screen/main_nav_screen.dart';
-import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
+import '../../../shared/presentation/screen/main_nav_screen.dart';
 import '../provider/auth_provider.dart';
+import '../widget/glass_container_bg.dart';
+import 'forgot_password_screen.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     
-    final error = await authProvider.login(
+    final error = await authProvider.signIn(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             minimumSize: const Size(double.infinity, 54),
                           ),
                           child: authProvider.isLoading 
-                            ? const CircularProgressIndicator(color: Colors.black)
+                            ? const CircularProgressIndicator(color: AppColors.accent)
                             : const Text(
                             'Login',
                             style: TextStyle(

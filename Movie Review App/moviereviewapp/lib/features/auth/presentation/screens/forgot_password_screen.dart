@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/auth/presentation/screens/code_verification.dart';
+import 'package:provider/provider.dart';
 import 'package:moviereviewapp/features/auth/presentation/widget/glass_container_bg.dart';
 import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:moviereviewapp/core/app_colors.dart';
+import '../provider/auth_provider.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -16,8 +17,38 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
 
+  Future<void> _handleResetPassword() async {
+    final email = _emailController.text.trim();
+    if (email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter your email'), backgroundColor: Colors.orange),
+      );
+      return;
+    }
+
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final error = await authProvider.resetPassword(email: email);
+
+    if (error == null) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Password reset link sent! Check your email.')),
+        );
+        Navigator.pop(context);
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error), backgroundColor: Colors.red),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -103,9 +134,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       const SizedBox(height: 24),
                       // Continue Button
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, CodeVerificationScreen.name);
-                        },
+                        onPressed: authProvider.isLoading ? null : _handleResetPassword,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.accent,
                           foregroundColor: Colors.black,
@@ -115,7 +144,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           ),
                           minimumSize: const Size(double.infinity, 54),
                         ),
-                        child: const Text(
+                        child: authProvider.isLoading 
+                          ? const CircularProgressIndicator(color: Colors.black)
+                          : const Text(
                           'Continue',
                           style: TextStyle(
                             fontSize: 18,
