@@ -11,7 +11,7 @@ class AppColors {
   static const leadingBtnColor = Color(0xFF6F7F88);
   static const titleTextColor = Color(0xFFFFCA45);
 
-
+  static const Color cardColor = Color(0xFF385263);
 
   static const drawerBg = Color(0xFF001C29);
 
