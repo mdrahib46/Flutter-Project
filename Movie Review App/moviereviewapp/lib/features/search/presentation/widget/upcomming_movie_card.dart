@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_details_screen.dart';
 
 import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
+import '../../../movie_screen/presentation/screen/movie_details_screen.dart';
 
 
 

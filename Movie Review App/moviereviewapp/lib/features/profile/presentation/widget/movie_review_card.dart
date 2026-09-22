@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/app/asset_path.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../../../app/asset_path.dart';
 import '../../../../core/app_colors.dart';
 
 class MovieReviewCard extends StatelessWidget {
@@ -12,7 +12,7 @@ class MovieReviewCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF385263).withOpacity(0.3),
+        color: AppColors.cardColor.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
           color: Colors.white12,

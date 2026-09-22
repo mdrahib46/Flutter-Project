@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../data/model/movie_model.dart';
 import '../widget/movie_card.dart';
 import '../widget/custom_appbar.dart';

@@ -21,7 +21,7 @@ class NetworkCaller {
   /// Get Request
   Future<NetworkResponse> getRequest({required String url}) async {
     try {
-      Uri uri = Uri.parse(url);
+      final Uri uri = Uri.parse(url);
 
       _logRequest(url, headers: headers());
 
@@ -53,15 +53,13 @@ class NetworkCaller {
     }
   }
 
-
-
   /// Post Request
   Future<NetworkResponse> postRequest({
     required String url,
     Map<String, dynamic>? body,
   }) async {
     try {
-      Uri uri = Uri.parse(url);
+      final Uri uri = Uri.parse(url);
 
       _logRequest(url, headers: headers(), requestBody: body);
 
@@ -74,12 +72,141 @@ class NetworkCaller {
       _logResponse(response);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final encodedResponse = response.body;
+        final decodeResponse = jsonDecode(response.body);
 
         return NetworkResponse(
           isSuccess: true,
           statusCode: response.statusCode,
-          responseBody: encodedResponse,
+          responseBody: decodeResponse,
+        );
+      } else {
+        final decodedResponse = jsonDecode(response.body);
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: decodedResponse['status_message'],
+        );
+      }
+    } on Exception catch (e) {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
+    }
+  }
+
+  /// Put Request
+  Future<NetworkResponse> putRequest({
+    required String url,
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      final Uri uri = Uri.parse(url);
+
+      _logRequest(url, headers: headers(), requestBody: body);
+
+      final Response response = await put(
+        uri,
+        body: jsonEncode(body),
+        headers: headers(),
+      );
+
+      _logResponse(response);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final decodeResponse = jsonDecode(response.body);
+
+        return NetworkResponse(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          responseBody: decodeResponse,
+        );
+      } else {
+        final decodedResponse = jsonDecode(response.body);
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: decodedResponse['status_message'],
+        );
+      }
+    } on Exception catch (e) {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
+    }
+  }
+
+  /// Patch Request
+  Future<NetworkResponse> patchRequest({
+    required String url,
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      final Uri uri = Uri.parse(url);
+
+      _logRequest(url, headers: headers(), requestBody: body);
+
+      final Response response = await patch(
+        uri,
+        body: jsonEncode(body),
+        headers: headers(),
+      );
+
+      _logResponse(response);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final decodeResponse = jsonDecode(response.body);
+
+        return NetworkResponse(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          responseBody: decodeResponse,
+        );
+      } else {
+        final decodedResponse = jsonDecode(response.body);
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: decodedResponse['status_message'],
+        );
+      }
+    } on Exception catch (e) {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
+    }
+  }
+
+  /// Delete Request
+  Future<NetworkResponse> deleteRequest({
+    required String url,
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      final Uri uri = Uri.parse(url);
+
+      _logRequest(url, headers: headers(), requestBody: body);
+
+      final Response response = await delete(
+        uri,
+        body: body != null ? jsonEncode(body) : null,
+        headers: headers(),
+      );
+
+      _logResponse(response);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final decodeResponse = jsonDecode(response.body);
+
+        return NetworkResponse(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          responseBody: decodeResponse,
         );
       } else {
         final decodedResponse = jsonDecode(response.body);

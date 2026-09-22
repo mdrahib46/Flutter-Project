@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/app_colors.dart';
 
 class ProfileStatsCard extends StatelessWidget {
   final String title;
@@ -17,7 +18,7 @@ class ProfileStatsCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF385263).withOpacity(0.4),
+        color: AppColors.cardColor.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white10),
       ),

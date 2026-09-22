@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/movie_screen/presentation/screen/movie_details_screen.dart';
+
 import '../../../../app/asset_path.dart';
+import '../../../movie_screen/presentation/screen/movie_details_screen.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({super.key, this.onTap});

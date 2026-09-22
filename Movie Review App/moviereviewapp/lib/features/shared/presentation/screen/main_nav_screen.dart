@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:moviereviewapp/features/profile/presentation/screen/profile_screen.dart';
-import 'package:moviereviewapp/features/wishlist/presentation/screen/wishlist_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../Home/presentation/screens/home_screen.dart';
+import '../../../profile/presentation/screen/profile_screen.dart';
 import '../../../search/presentation/screen/search_screen.dart';
+import '../../../wishlist/presentation/screen/wishlist_screen.dart';
 import '../provider/bottom_nav_provider.dart';
 
 class MainNavScreen extends StatefulWidget {

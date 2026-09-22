@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:moviereviewapp/features/shared/presentation/widget/movie_card.dart';
-import 'package:moviereviewapp/features/shared/presentation/widget/custom_appbar.dart';
+import 'package:provider/provider.dart';import '../../../shared/presentation/widget/custom_appbar.dart';
+import '../../../shared/presentation/widget/movie_card.dart';
 import '../provider/wishlist_provider.dart';
 
 class WishlistScreen extends StatefulWidget {
